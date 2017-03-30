@@ -1,4 +1,4 @@
-webtriplog
+Triplog
 ==========
 
-A Symfony project created on March 29, 2017, 2:06 am.
+Trip timeline using Symfony 2 and Reactjs as Frontend
