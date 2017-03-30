@@ -1,8 +1,8 @@
 TripLogBundle\Entity\Trip:
-    trip_{1..10}:
+    trip_{1..20}:
         tripName: '<tripName()>'
         tripDesc: '<sentence()>'
-        isPublic: '<boolean(50)>'
+        isPublic: '<boolean(90)>'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
 TripLogBundle\Entity\TripCategory:
@@ -18,5 +18,6 @@ TripLogBundle\Entity\TripLocation:
         createdAt: '<dateTimeBetween("-200 days", "now")>'
         trip: '@trip_*'
         tripCategory: '@trip.category_*'
+        isPublic: '<boolean(50)>'
 
 

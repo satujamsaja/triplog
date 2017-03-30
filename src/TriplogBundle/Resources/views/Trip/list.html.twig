@@ -4,30 +4,21 @@
 {% block body %}
    <div class="row">
        <div class="col-md-12">
-           <div class="timeline">
-               <dl>
-                   {% for trip in trips %}
-                       <dd class="pos-{% if loop.index is odd %}left{% else %}right{% endif %} clearfix">
-                           <div class="circ"></div>
-                           <div class="time">{{ trip.createdAt | date("M d") }}</div>
-                           <div class="events">
-                               <div class="pull-left">
-                                   <img class="events-object img-rounded" width="50" src="{{ asset('img/placeholder.jpg') }}">
-                               </div>
-                               <div class="events-body">
-                                   <h4 class="events-heading">{{ trip.tripName }}</h4>
-                                   <p>{{ trip.tripDesc }}</p>
-                                   <p><a href="{{ path('trip_show', {'id' : trip.id }) }}">More</a></p>
-                               </div>
-                           </div>
-                       </dd>
-                   {% endfor %}
-               </dl>
-           </div>
+            <div id="js-timeline-wrapper"></div>
        </div>
    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/babel" src="{{ asset('js/triptimeline.react.js') }}"></script>
+    <script type="text/babel">
+        var tripUrl = '{{ path('api_trip_list')}}';
+
+        ReactDOM.render(
+                <TripTimeline url={tripUrl} />,
+            document.getElementById('js-timeline-wrapper')
+        );
+    </script>
+
 {% endblock %}

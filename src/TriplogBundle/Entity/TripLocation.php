@@ -46,6 +46,11 @@ class TripLocation
     private $tripLatLon;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -155,6 +160,22 @@ class TripLocation
     public function setTripCategory(TripCategory $tripCategory)
     {
         $this->tripCategory = $tripCategory;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPublic()
+    {
+        return $this->isPublic;
+    }
+
+    /**
+     * @param mixed $isPublic
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->isPublic = $isPublic;
     }
 
 
