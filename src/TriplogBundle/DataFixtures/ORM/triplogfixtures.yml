@@ -1,0 +1,22 @@
+TripLogBundle\Entity\Trip:
+    trip_{1..10}:
+        tripName: '<tripName()>'
+        tripDesc: '<sentence()>'
+        isPublic: '<boolean(50)>'
+        createdAt: '<dateTimeBetween("-200 days", "now")>'
+
+TripLogBundle\Entity\TripCategory:
+    trip.category_{1..10}:
+        tripCatName: '<username()>'
+        createdAt: '<dateTimeBetween("-200 days", "now")>'
+
+TripLogBundle\Entity\TripLocation:
+    trip.location_{1..100}:
+        tripLocName: '<city()>'
+        tripLocDesc: '<sentence()>'
+        tripLatLon: '<tripLatLon()>'
+        createdAt: '<dateTimeBetween("-200 days", "now")>'
+        trip: '@trip_*'
+        tripCategory: '@trip.category_*'
+
+

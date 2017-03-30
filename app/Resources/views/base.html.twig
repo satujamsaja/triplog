@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets filter="cssrewrite" output="css/compiled/vendor.min.css"
+                "css/vendor/bootstrap.min.css"
+                "css/vendor/font-awesome.min.css"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            {% stylesheets filter="scssphp" filter="cssrewrite" filter="?uglifycss" output="css/compiled/app.min.css"
+                "@TriplogBundle/Resources/public/css/*.css"
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--[if lt IE 9]>
+        <script src="{{ asset('js/html5shiv.js') }}"></script>
+        <script src="{{ asset('js/respond.min.js') }}"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            {% javascripts filter="?jsqueeze" output="js/compiled/vendor.min.js"
+                "js/vendor/jquery.min.js"
+                "js/vendor/bootstrap.min.js"
+                "js/vendor/icheck.min.js"
+                "js/vendor/jquery.fs.selecter.min.js"
+                "js/vendor/jquery.fs.stepper.min.js"
+                "js/vendor/react.min.js"
+                "js/vendor/react-dom.min.js"
+                "js/vendor/browser.min.js"
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            {% javascripts filter="?jsqueeze" filter="?uglifyjs2" output="js/compiled/app.min.js"
+                "@TriplogBundle/Resources/public/js/*.js"
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

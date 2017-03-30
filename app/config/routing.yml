@@ -1,0 +1,7 @@
+triplog:
+    resource: "@TriplogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+
