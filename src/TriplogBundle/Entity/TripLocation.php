@@ -3,6 +3,7 @@
 
 namespace TriplogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +32,12 @@ class TripLocation
     private $tripCategory;
 
     /**
+     * @ORM\OneToMany(targetEntity="TripImage", mappedBy="tripLocation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tripImage;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $tripLocName;
@@ -55,6 +62,10 @@ class TripLocation
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->tripImage = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -104,7 +115,6 @@ class TripLocation
         $this->tripLatLon = $tripLatLon;
     }
 
-
     /**
      * @return mixed
      */
@@ -112,7 +122,6 @@ class TripLocation
     {
         return $this->id;
     }
-
 
     /**
      * @return mixed
@@ -161,6 +170,23 @@ class TripLocation
     {
         $this->tripCategory = $tripCategory;
     }
+
+    /**
+     * @return ArrayCollection|TripImage[]
+     */
+    public function getTripImage()
+    {
+        return $this->tripImage;
+    }
+
+    /**
+     * @param mixed $tripImage
+     */
+    public function setTripImage($tripImage)
+    {
+        $this->tripImage = $tripImage;
+    }
+
 
     /**
      * @return mixed

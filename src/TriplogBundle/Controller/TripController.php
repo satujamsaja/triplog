@@ -36,7 +36,7 @@ class TripController extends Controller
                 'id' => $trip->getId(),
                 'tripName' => $trip->getTripName(),
                 'tripDesc' => $trip->getTripDesc(),
-                'createdAt' => $trip->getCreatedAt()->format("M d, Y"),
+                'createdAt' => $trip->getCreatedAt()->format("F d Y, H:ma"),
                 'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
                 'link' => $this->generateUrl('trip_show', [
                     'id' => $trip->getId(),
@@ -69,8 +69,9 @@ class TripController extends Controller
                     'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLoc->getTripLocName(),
                     'tripLocDesc' => $tripLoc->getTripLocDesc(),
+                    'tripLocImg' => $tripLoc->getTripLocImg(),
                     'tripLatLon' => (!empty($tripLoc->getTripLatLon())) ? explode(",", $tripLoc->getTripLatLon()) : [],
-                    'createdAt' => $tripLoc->getCreatedAt()->format("M d, Y"),
+                    'createdAt' => $tripLoc->getCreatedAt()->format("F d Y, H:ma"),
                     'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
                     'link' => $this->generateUrl('trip_location_show', [
                         'id' => $tripLoc->getId(),

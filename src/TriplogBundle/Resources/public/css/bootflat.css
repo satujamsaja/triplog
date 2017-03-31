@@ -2423,7 +2423,7 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   top: 31px;
   left: 50%;
   display: inline-block;
-  width: 200px;
+  width: 250px;
   padding: 10px 20px;
   color: #4fc1e9;
 }
@@ -2459,7 +2459,7 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   font-size: 14px;
 }
 .timeline dl dd.pos-right .time {
-  margin-left: -200px;
+  margin-left: -250px;
   text-align: right;
 }
 .timeline dl dd.pos-right .events {

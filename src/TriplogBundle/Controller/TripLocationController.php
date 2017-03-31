@@ -36,8 +36,9 @@ class TripLocationController extends Controller
                     'tripCategory' => $tripLocation->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLocation->getTripLocName(),
                     'tripLocDesc' => $tripLocation->getTripLocDesc(),
-                    'tripLatLon' => (!empty($tripLocation->getTripLatLon())) ? explode(",", $tripLocation->getTripLatLon()) : [],
-                    'createdAt' => $tripLocation->getCreatedAt()->format("M d, Y"),
+                    'tripLatLon' => $tripLocation->getTripLatLon(),
+                    'tripLocImg' => $tripLocation->getTripLocImg(),
+                    'createdAt' => $tripLocation->getCreatedAt()->format("F d Y, H:ma"),
                     'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
                     'link' => $this->generateUrl('trip_location_show', [
                         'id' => $tripLocation->getId(),

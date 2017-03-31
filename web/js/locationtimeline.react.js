@@ -32,7 +32,7 @@ var LocationList = React.createClass({
     render: function() {
         var locationNodes = this.props.locations.map(function(location) {
             return (
-                <LocationLocBox tripCategory={location.tripCategory} tripLocDesc={location.tripLocDesc} tripLocName={location.tripLocName} date={location.createdAt} key={location.id} pos={location.posTimeline} link={location.link}>{location.tripLocDesc}</LocationLocBox>
+                <LocationLocBox tripCategory={location.tripCategory} tripLocDesc={location.tripLocDesc} tripLocName={location.tripLocName} tripLocImg={location.tripLocImg} tripLatLon={location.tripLatLon} date={location.createdAt} key={location.id} pos={location.posTimeline} link={location.link}>{location.tripLocDesc}</LocationLocBox>
             );
         });
 
@@ -53,6 +53,7 @@ var LocationLocBox = React.createClass({
                 <div className="circ"></div>
                 <div className="time">{this.props.date}</div>
                 <div className="events">
+                    <div className="events-image"><img src={this.props.tripLocImg} /></div>
                     <div className="pull-left">
                         <img className="events-object img-rounded" width="50" src="/img/placeholder.jpg" />
                     </div>
@@ -60,7 +61,7 @@ var LocationLocBox = React.createClass({
                         <h4 className="events-heading">{this.props.tripLocName}</h4>
                         <p>{this.props.tripLocDesc}</p>
                         <i className="fa fa-tag fa-2" aria-hidden="true"></i> {this.props.tripCategory}
-                        <p><a className="btn btn-success btn-small pull-right" href={this.props.link}>More</a></p>
+                        <p><a className="btn btn-success btn-small pull-right" href={this.props.link}>View location detail</a></p>
                     </div>
                 </div>
             </dd>

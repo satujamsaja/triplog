@@ -44,6 +44,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 10px 0px;
 }
 
+/* Timeline */
 #trip-timeline.timeline dl dd .circ {
     background-color: #37bc9b;
 }
@@ -66,4 +67,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 #triploc-timeline.timeline dl dd .time {
     color: #f6bb42;
+}
+
+/* Timeline Location */
+.events .events-image {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.events .events-image img {
+    width: 100%;
 }

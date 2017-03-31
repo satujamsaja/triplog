@@ -20,4 +20,11 @@ TripLogBundle\Entity\TripLocation:
         tripCategory: '@trip.category_*'
         isPublic: '<boolean(50)>'
 
+TripLogBundle\Entity\TripImage:
+    trip.image_{1...200}:
+        tripLocation: '@trip.location_*'
+        tripImgUrl: '<imageUrl(540,405,"city")>'
+        createdAt: '<dateTimeBetween("-200 days", "now")>'
+
+
 
