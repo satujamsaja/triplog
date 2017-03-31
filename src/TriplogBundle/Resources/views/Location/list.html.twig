@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Trip Locations{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li class="active"><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
+        <li><a href="#">Trips Maps</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix"></div>
+            <div id="js-timeline-wrapper"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/babel" src="{{ asset('js/locationtimeline.react.js') }}"></script>
+    <script type="text/babel">
+        var locationUrl = '{{ path('api_location_list')}}';
+
+        ReactDOM.render(
+                <LocationTimeline url={locationUrl} />,
+            document.getElementById('js-timeline-wrapper')
+        );
+    </script>
+{% endblock %}

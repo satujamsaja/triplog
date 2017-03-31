@@ -1,7 +1,40 @@
 {% extends 'base.html.twig' %}
 {% block title %}Trip - {{ trip.tripName }}{% endblock %}
 
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
+        <li><a href="#">Trips Maps</a></li>
+    </ul>
+{% endblock %}
+
 {% block body %}
-    {{ trip.tripName }}<br/>
-    {{ trip.tripDesc }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix">
+                <div class="popover top">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">{{ trip.tripName }}</h3>
+                    <div class="popover-content">
+                        <p>{{ trip.tripDesc }}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="js-locations-wrapper"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/babel" src="{{ asset('js/triplocationstimeline.react.js') }}"></script>
+    <script type="text/babel">
+        var tripLocUrl = '{{ path('api_trip_view', { 'id' : trip.id })}}';
+
+        ReactDOM.render(
+                <TripLocTimeline url={tripLocUrl} />,
+            document.getElementById('js-locations-wrapper')
+        );
+    </script>
 {% endblock %}

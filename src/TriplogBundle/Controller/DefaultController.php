@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return new Response('Hello world');
+        return $this->render('TriplogBundle:Default:index.html.twig');
     }
 
 }

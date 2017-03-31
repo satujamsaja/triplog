@@ -1,7 +1,7 @@
-var TripTimeline = React.createClass({
+var LocationTimeline = React.createClass({
     getInitialState: function() {
         return {
-            trips: []
+            locations: []
         }
     },
 
@@ -14,7 +14,7 @@ var TripTimeline = React.createClass({
         $.ajax({
             url: this.props.url,
             success: function (data) {
-                this.setState({trips: data.trips});
+                this.setState({locations: data.locations});
             }.bind(this)
         });
     },
@@ -22,31 +22,31 @@ var TripTimeline = React.createClass({
     render: function() {
         return (
             <div>
-                <TripList trips={this.state.trips} />
+                <LocationList locations={this.state.locations} />
             </div>
         );
     }
 });
 
-var TripList = React.createClass({
+var LocationList = React.createClass({
     render: function() {
-        var tripNodes = this.props.trips.map(function(trip) {
+        var locationNodes = this.props.locations.map(function(location) {
             return (
-                <TripBox tripName={trip.tripName} tripDesc={trip.tripDesc} date={trip.createdAt} key={trip.id} pos={trip.posTimeline} link={trip.link}>{trip.tripDesc}</TripBox>
+                <LocationLocBox tripCategory={location.tripCategory} tripLocDesc={location.tripLocDesc} tripLocName={location.tripLocName} date={location.createdAt} key={location.id} pos={location.posTimeline} link={location.link}>{location.tripLocDesc}</LocationLocBox>
             );
         });
 
         return (
-            <div id="trip-timeline" className="timeline">
+            <div id="location-timeline" className="timeline">
                 <dl>
-                {tripNodes}
+                {locationNodes}
                 </dl>
             </div>
         );
     }
 });
 
-var TripBox = React.createClass({
+var LocationLocBox = React.createClass({
     render: function() {
         return (
             <dd className={this.props.pos}>
@@ -57,9 +57,10 @@ var TripBox = React.createClass({
                         <img className="events-object img-rounded" width="50" src="/img/placeholder.jpg" />
                     </div>
                     <div className="events-body">
-                        <h4 className="events-heading">{this.props.tripName}</h4>
-                        <p>{this.props.tripDesc}</p>
-                        <p><a className="btn btn-info btn-small pull-right" href={this.props.link}>More</a></p>
+                        <h4 className="events-heading">{this.props.tripLocName}</h4>
+                        <p>{this.props.tripLocDesc}</p>
+                        <i className="fa fa-tag fa-2" aria-hidden="true"></i> {this.props.tripCategory}
+                        <p><a className="btn btn-success btn-small pull-right" href={this.props.link}>More</a></p>
                     </div>
                 </div>
             </dd>
@@ -67,4 +68,4 @@ var TripBox = React.createClass({
     }
 });
 
-window.TripTimeline = TripTimeline;
+window.LocationTimeline = LocationTimeline;

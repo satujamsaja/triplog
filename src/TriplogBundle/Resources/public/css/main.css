@@ -6,3 +6,64 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }
+
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.content-header {
+    margin-top: 50px;
+    position: relative;
+}
+
+.content-header .popover {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    top:25px;
+    text-align: center;
+    max-width: 100%;
+}
+
+.content-header .popover .popover-title {
+    font-size: 20px;
+}
+
+#map {
+    height:480px;
+    width: 100%;
+}
+
+.jumbotron-map {
+    margin-top: 25px;
+}
+
+.btn-small {
+    padding: 0px 12px;
+    margin: 10px 0px;
+}
+
+#trip-timeline.timeline dl dd .circ {
+    background-color: #37bc9b;
+}
+
+#trip-timeline.timeline dl dd .time {
+    color: #37bc9b;
+}
+
+#location-timeline.timeline dl dd .circ {
+    background-color: #8cc152;
+}
+
+#location-timeline.timeline dl dd .time {
+    color: #8cc152;
+}
+
+#triploc-timeline.timeline dl dd .circ {
+    background-color: #f6bb42;
+}
+
+#triploc-timeline.timeline dl dd .time {
+    color: #f6bb42;
+}

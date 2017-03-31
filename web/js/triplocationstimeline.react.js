@@ -1,7 +1,7 @@
-var TripTimeline = React.createClass({
+var TripLocTimeline = React.createClass({
     getInitialState: function() {
         return {
-            trips: []
+            tripLocations: []
         }
     },
 
@@ -14,7 +14,8 @@ var TripTimeline = React.createClass({
         $.ajax({
             url: this.props.url,
             success: function (data) {
-                this.setState({trips: data.trips});
+                console.log(data);
+                this.setState({tripLocations: data.tripLocations});
             }.bind(this)
         });
     },
@@ -22,31 +23,31 @@ var TripTimeline = React.createClass({
     render: function() {
         return (
             <div>
-                <TripList trips={this.state.trips} />
+                <TripLocList tripLocations={this.state.tripLocations} />
             </div>
         );
     }
 });
 
-var TripList = React.createClass({
+var TripLocList = React.createClass({
     render: function() {
-        var tripNodes = this.props.trips.map(function(trip) {
+        var tripLocNodes = this.props.tripLocations.map(function(tripLoc) {
             return (
-                <TripBox tripName={trip.tripName} tripDesc={trip.tripDesc} date={trip.createdAt} key={trip.id} pos={trip.posTimeline} link={trip.link}>{trip.tripDesc}</TripBox>
+                <TripLocBox tripCategory={tripLoc.tripCategory} tripLocDesc={tripLoc.tripLocDesc} tripLocName={tripLoc.tripLocName} date={tripLoc.createdAt} key={tripLoc.id} pos={tripLoc.posTimeline} link={tripLoc.link}>{tripLoc.tripLocDesc}</TripLocBox>
             );
         });
 
         return (
-            <div id="trip-timeline" className="timeline">
+            <div id="triploc-timeline" className="timeline">
                 <dl>
-                {tripNodes}
+                {tripLocNodes}
                 </dl>
             </div>
         );
     }
 });
 
-var TripBox = React.createClass({
+var TripLocBox = React.createClass({
     render: function() {
         return (
             <dd className={this.props.pos}>
@@ -57,9 +58,9 @@ var TripBox = React.createClass({
                         <img className="events-object img-rounded" width="50" src="/img/placeholder.jpg" />
                     </div>
                     <div className="events-body">
-                        <h4 className="events-heading">{this.props.tripName}</h4>
-                        <p>{this.props.tripDesc}</p>
-                        <p><a className="btn btn-info btn-small pull-right" href={this.props.link}>More</a></p>
+                        <h4 className="events-heading">{this.props.tripLocName} in {this.props.tripCategory}</h4>
+                        <p>{this.props.tripLocDesc}</p>
+                        <p><a className="btn btn-warning btn-small pull-right"  href={this.props.link}>More</a></p>
                     </div>
                 </div>
             </dd>
@@ -67,4 +68,4 @@ var TripBox = React.createClass({
     }
 });
 
-window.TripTimeline = TripTimeline;
+window.TripLocTimeline = TripLocTimeline;

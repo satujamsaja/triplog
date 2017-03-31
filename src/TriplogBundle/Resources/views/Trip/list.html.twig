@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block title %}Trip Timeline{% endblock %}
 
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
+        <li><a href="#">Trips Maps</a></li>
+    </ul>
+{% endblock %}
+
 {% block body %}
    <div class="row">
        <div class="col-md-12">
-            <div id="js-timeline-wrapper"></div>
+           <div class="content-header clearfix">
+           </div>
+           <div id="js-timeline-wrapper"></div>
        </div>
    </div>
 {% endblock %}
@@ -20,5 +30,4 @@
             document.getElementById('js-timeline-wrapper')
         );
     </script>
-
 {% endblock %}

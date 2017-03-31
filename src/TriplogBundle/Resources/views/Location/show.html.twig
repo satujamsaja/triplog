@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ location.tripLocName }} in {{ location.tripCategory.tripCatName }}{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li class="active"><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
+        <li><a href="#">Trips Maps</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix"></div>
+            <div class="jumbotron jumbotron-map">
+                <div class="jumbotron-photo"><div id="map"></div></div>
+                <div class="jumbotron-contents">
+                    <h1>{{ location.tripLocName }}</h1>
+                    <p>{{ location.tripLocDesc }}</p>
+                    <i class="fa fa-tag fa-2" aria-hidden="true"></i> {{ location.tripCategory.tripCatName }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% set coord = location.tripLatLon|split(',') %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function initMap() {
+            var LatLng = {lat: {{ coord[0] }}, lng: {{ coord[1]}}};
+
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: LatLng,
+                zoom: 15
+            });
+
+            // Create a marker and set its position.
+            var marker = new google.maps.Marker({
+                map: map,
+                position: LatLng,
+                title: '{{ location.tripLocName }}'
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4IIuFO5xvwsGKS_aewpGebzSOJNveo40&callback=initMap" async defer></script>
+{% endblock %}
+

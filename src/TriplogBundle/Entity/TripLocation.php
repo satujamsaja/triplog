@@ -19,13 +19,13 @@ class TripLocation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Trip")
+     * @ORM\ManyToOne(targetEntity="Trip", inversedBy="tripLocations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $trip;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TripCategory")
+     * @ORM\ManyToOne(targetEntity="TripCategory", inversedBy="tripLocations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tripCategory;
@@ -177,8 +177,5 @@ class TripLocation
     {
         $this->isPublic = $isPublic;
     }
-
-
-
 
 }

@@ -3,6 +3,7 @@
 
 namespace TriplogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +38,18 @@ class Trip
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TripLocation", mappedBy="trip")
+     * @ORM\OrderBy({"createdAt"="DESC"})
+     */
+    private $tripLocations;
+
+
+    public function __construct()
+    {
+        $this->tripLocations = new ArrayCollection();
+    }
 
 
     /**
@@ -111,6 +124,13 @@ class Trip
         $this->isPublic = $isPublic;
     }
 
+    /**
+     * @return ArrayCollection|TripLocation[]
+     */
+    public function getTripLocations()
+    {
+        return $this->tripLocations;
+    }
 
 
 }

@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('trip_new') }}">New trip</a>
+
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
+        <li><a href="#">Trips Maps</a></li>
+    </ul>
 {% endblock %}
