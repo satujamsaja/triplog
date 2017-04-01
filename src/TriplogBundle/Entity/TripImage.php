@@ -19,8 +19,8 @@ class TripImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TripLocation", inversedBy="tripImage")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="TripLocation", inversedBy="tripLocImg")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $tripLocation;
 

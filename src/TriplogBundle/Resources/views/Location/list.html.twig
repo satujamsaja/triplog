@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block title %}Trip Locations{% endblock %}
+{% block title %}Locations Timeline{% endblock %}
 
 {% block navbar %}
     <ul class="nav navbar-nav">
         <li><a href="{{ path('trip_list') }}">Trips</a></li>
-        <li class="active"><a href="{{ path('trip_locations') }}">Trip Locations</a></li>
-        <li><a href="#">Trips Maps</a></li>
+        <li><a href="{{ path('trip_categories') }}">Categories</a></li>
+        <li class="active"><a href="{{ path('trip_locations') }}">Locations</a></li>
+        <li><a href="#">Maps</a></li>
     </ul>
 {% endblock %}
 

@@ -2,44 +2,39 @@
 
 namespace TriplogBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use TriplogBundle\Entity\Trip;
+use TriplogBundle\Entity\TripCategory;
 use TriplogBundle\Entity\TripLocation;
 
-
-class TripController extends Controller
+class TripCategoryController extends Controller
 {
     /**
-     * @Route("/trips", name="trip_list")
+     * @Route("/categories", name="trip_categories")
      */
     public function indexAction()
     {
-        return $this->render('TriplogBundle:Trip:list.html.twig');
+        return $this->render('TriplogBundle:Category:list.html.twig');
     }
 
     /**
-     * @Route("/api/trip/list", name="api_trip_list")
+     * @Route("/api/category/list", name="api_category_list")
      */
     public function apiListAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $trips = $em->getRepository('TriplogBundle:Trip')
-            ->findAllPublicOrderByDate();
+        $categories = $em->getRepository('TriplogBundle:TripCategory')
+            ->findAllOrderByName();
 
-        // Generate proper trips data for json.
-        $arrayContent['trips'] = [];
-        foreach($trips as $index => $trip) {
-            $arrayContent['trips'][] = [
-                'id' => $trip->getId(),
-                'tripName' => $trip->getTripName(),
-                'tripDesc' => $trip->getTripDesc(),
-                'createdAt' => $trip->getCreatedAt()->format("F d Y, H:ma"),
-                'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
-                'link' => $this->generateUrl('trip_show', [
-                    'id' => $trip->getId(),
+        // Generate proper data for json.
+        $arrayContent['categories'] = [];
+        foreach($categories as $index => $category) {
+            $arrayContent['categories'][] = [
+                'id' => $category->getId(),
+                'tripCatName' => $category->getTripCatName(),
+                'link' => $this->generateUrl('trip_category_show', [
+                    'id' => $category->getId(),
                 ]),
             ];
         }
@@ -48,17 +43,15 @@ class TripController extends Controller
     }
 
     /**
-     * @Route("/api/trip/{id}", name="api_trip_view")
+     * @Route("/api/category/{id}", name="api_category_view")
      */
-    public function apiShowAction(Trip $trip)
+    public function apiShowAction(TripCategory $tripCategory)
     {
-        // Get all locations on trips.
-        $tripLocs = $trip->getTripLocations()
+        // Get all locations on category.
+        $tripLocs = $tripCategory->getTripLocations()
             ->filter(function (TripLocation $tripLocation) {
                 return $tripLocation->getIsPublic() == true;
             });
-
-        // Reindex array keys.
 
         $arrayContent['locations'] = [];
         if($tripLocs) {
@@ -89,21 +82,21 @@ class TripController extends Controller
     }
 
     /**
-     * @Route("/trip/{id}", name="trip_show")
+     * @Route("/category/{id}", name="trip_category_show")
      */
-    public function showAction(Trip $trip)
+    public function showAction(TripCategory $tripCategory)
     {
-        // Get this trip, return not found if is not public.
         $em = $this->getDoctrine()->getManager();
-        $trip = $em->getRepository('TriplogBundle:Trip')
-            ->findOnePublicById($trip->getId());
+        $category = $em->getRepository('TriplogBundle:TripCategory')
+            ->findOneBy(['id' => $tripCategory->getId()]);
 
-        if(!$trip) {
-            throw $this->createNotFoundException('No trip found.');
+        if(!$category) {
+            throw $this->createNotFoundException('No category found.');
         }
 
-        return $this->render('TriplogBundle:Trip:show.html.twig', [
-            'trip' => $trip,
+
+        return $this->render('TriplogBundle:Category:show.html.twig',[
+            'category' => $category,
         ]);
     }
 

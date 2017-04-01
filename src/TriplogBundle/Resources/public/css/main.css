@@ -44,29 +44,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 10px 0px;
 }
 
-/* Timeline */
-#trip-timeline.timeline dl dd .circ {
-    background-color: #37bc9b;
-}
-
-#trip-timeline.timeline dl dd .time {
-    color: #37bc9b;
-}
-
-#location-timeline.timeline dl dd .circ {
-    background-color: #8cc152;
-}
-
-#location-timeline.timeline dl dd .time {
-    color: #8cc152;
-}
-
-#triploc-timeline.timeline dl dd .circ {
-    background-color: #f6bb42;
-}
-
-#triploc-timeline.timeline dl dd .time {
-    color: #f6bb42;
+.navbar-right {
+    margin-right: 0;
 }
 
 /* Timeline Location */
@@ -77,4 +56,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .events .events-image img {
     width: 100%;
+}
+
+/* Categories */
+.content-body {
+    margin-top: 25px;
 }

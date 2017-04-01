@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Trip Categories{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ path('trip_list') }}">Trips</a></li>
+        <li class="active"><a href="{{ path('trip_categories') }}">Categories</a></li>
+        <li><a href="{{ path('trip_locations') }}">Locations</a></li>
+        <li><a href="#">Maps</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix"></div>
+            <div id="js-categories-wrapper"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/babel" src="{{ asset('js/categories.react.js') }}"></script>
+    <script type="text/babel">
+        var categoryUrl = '{{ path('api_category_list')}}';
+
+        ReactDOM.render(
+                <Categories url={categoryUrl} />,
+            document.getElementById('js-categories-wrapper')
+        );
+    </script>
+{% endblock %}

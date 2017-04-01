@@ -43,6 +43,9 @@ class TripLocationController extends Controller
                     'link' => $this->generateUrl('trip_location_show', [
                         'id' => $tripLocation->getId(),
                     ]),
+                    'linkCat' => $this->generateUrl('trip_category_show', [
+                        'id' => $tripLocation->getTripCategory()->getId(),
+                    ]),
                 ];
             }
         }

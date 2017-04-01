@@ -21,21 +21,21 @@ class TripLocation
 
     /**
      * @ORM\ManyToOne(targetEntity="Trip", inversedBy="tripLocations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $trip;
 
     /**
      * @ORM\ManyToOne(targetEntity="TripCategory", inversedBy="tripLocations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $tripCategory;
 
     /**
      * @ORM\OneToMany(targetEntity="TripImage", mappedBy="tripLocation")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OrderBy({"createdAt"="DESC"})
      */
-    private $tripImage;
+    private $tripLocImg;
 
     /**
      * @ORM\Column(type="string")
@@ -64,7 +64,7 @@ class TripLocation
 
     public function __construct()
     {
-        $this->tripImage = new ArrayCollection();
+        $this->tripLocImg = new ArrayCollection();
     }
 
     /**
@@ -174,19 +174,10 @@ class TripLocation
     /**
      * @return ArrayCollection|TripImage[]
      */
-    public function getTripImage()
+    public function getTripLocImg()
     {
-        return $this->tripImage;
+        return $this->tripLocImg;
     }
-
-    /**
-     * @param mixed $tripImage
-     */
-    public function setTripImage($tripImage)
-    {
-        $this->tripImage = $tripImage;
-    }
-
 
     /**
      * @return mixed

@@ -7,7 +7,7 @@ TripLogBundle\Entity\Trip:
 
 TripLogBundle\Entity\TripCategory:
     trip.category_{1..10}:
-        tripCatName: '<username()>'
+        tripCatName: '<word()>'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
 TripLogBundle\Entity\TripLocation:
