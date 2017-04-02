@@ -57,12 +57,21 @@ class TripCategoryController extends Controller
         if($tripLocs) {
             $index = 0;
             foreach($tripLocs as $tripLoc) {
+                // Get Images on this locations.
+                $tripLocImages = $tripLoc->getTripLocImg();
+                $tripLocImg = [];
+                if($tripLocImages) {
+                    foreach($tripLocImages as $tripLocImage) {
+                        $tripLocImg[] = $tripLocImage->getTripImgUrl();
+                    }
+                }
+
                 $arrayContent['locations'][] = [
                     'id' => $tripLoc->getId(),
                     'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLoc->getTripLocName(),
                     'tripLocDesc' => $tripLoc->getTripLocDesc(),
-                    'tripLocImg' => $tripLoc->getTripLocImg(),
+                    'tripLocImg' => $tripLocImg,
                     'tripLatLon' => (!empty($tripLoc->getTripLatLon())) ? explode(",", $tripLoc->getTripLatLon()) : [],
                     'createdAt' => $tripLoc->getCreatedAt()->format("F d Y, H:ma"),
                     'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',

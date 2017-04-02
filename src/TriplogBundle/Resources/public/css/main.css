@@ -66,3 +66,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .content-body {
     margin-top: 25px;
 }
+
+/* Gallery */
+.gallery {
+
+}
+
+.gallery .item {
+    width: 50%;
+    display: inline-block;
+}
+
+.gallery .item img {
+    width: 100%;
+}
