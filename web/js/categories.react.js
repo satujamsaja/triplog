@@ -54,7 +54,7 @@ var CategoryBox = React.createClass({
                     <img className="img-rounded" src="/img/placeholder.jpg" />
                         <div className="caption text-center">
                             <h2>{this.props.tripCatName}</h2>
-                            <p><a href={this.props.link} className="btn btn-warning btn-small" role="button">View locations</a></p>
+                            <p><a href={this.props.link} className="btn btn-primary btn-small" role="button">View locations</a></p>
                         </div>
                 </div>
             </div>

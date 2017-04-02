@@ -62,6 +62,7 @@ class TripLocationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $location = $em->getRepository('TriplogBundle:TripLocation')
             ->findOnePublicById($tripLocation->getId());
+        dump($location);
 
         if(!$location) {
             throw $this->createNotFoundException('No trip found');

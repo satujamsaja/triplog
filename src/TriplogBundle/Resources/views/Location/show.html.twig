@@ -19,7 +19,7 @@
                 <div class="jumbotron-contents">
                     <h1>{{ location.tripLocName }}</h1>
                     <p>{{ location.tripLocDesc }}</p>
-                    <i class="fa fa-tag fa-2" aria-hidden="true"></i> {{ location.tripCategory.tripCatName }}
+                    <i class="fa fa-tag fa-2" aria-hidden="true"></i> <a href="{{ path('trip_category_show', {"id" : location.tripCategory.id }) }}">{{ location.tripCategory.tripCatName }}</a>
                 </div>
             </div>
         </div>

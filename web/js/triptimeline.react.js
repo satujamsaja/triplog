@@ -59,7 +59,7 @@ var TripBox = React.createClass({
                     <div className="events-body">
                         <h4 className="events-heading">{this.props.tripName}</h4>
                         <p>{this.props.tripDesc}</p>
-                        <p><a className="btn btn-info btn-small pull-right" href={this.props.link}>View locations</a></p>
+                        <p><a className="btn btn-primary btn-small pull-right" href={this.props.link}>View locations</a></p>
                     </div>
                 </div>
             </dd>
