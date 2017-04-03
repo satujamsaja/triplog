@@ -38,4 +38,17 @@ class TripLocationRepository extends EntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return TripLocation[]
+     */
+    public function findSomePublicOrderByDate()
+    {
+        return $this->createQueryBuilder('tripLocation')
+            ->andWhere('tripLocation.isPublic = :isPublic')
+            ->setParameter('isPublic',true)
+            ->addOrderBy('tripLocation.createdAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->execute();
+    }
 }

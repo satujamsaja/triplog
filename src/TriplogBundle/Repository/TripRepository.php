@@ -37,4 +37,5 @@ class TripRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
 }

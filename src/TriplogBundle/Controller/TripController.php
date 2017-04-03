@@ -25,24 +25,21 @@ class TripController extends Controller
      */
     public function apiListAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $trips = $em->getRepository('TriplogBundle:Trip')
-            ->findAllPublicOrderByDate();
+        // Call TripDataRenderer service.
+        $tripData = $this->get('trip.data_renderer');
+        $tripDataContent = $tripData->TripRenderData();
 
-        // Generate proper trips data for json.
-        $arrayContent['trips'] = [];
-        foreach($trips as $index => $trip) {
-            $arrayContent['trips'][] = [
-                'id' => $trip->getId(),
-                'tripName' => $trip->getTripName(),
-                'tripDesc' => $trip->getTripDesc(),
-                'createdAt' => $trip->getCreatedAt()->format("F d Y, H:ma"),
-                'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
-                'link' => $this->generateUrl('trip_show', [
-                    'id' => $trip->getId(),
-                ]),
-            ];
-        }
+        return new JsonResponse($tripDataContent);
+    }
+
+    /**
+     * @Route("/api/trip/map", name="api_trip_map")
+     */
+    public function apiMapAction()
+    {
+        // Call TripDataRenderer service.
+        $tripData = $this->get('trip.data_renderer');
+        $arrayContent = $tripData->TripRenderMap();
 
         return new JsonResponse($arrayContent);
     }
@@ -52,46 +49,9 @@ class TripController extends Controller
      */
     public function apiShowAction(Trip $trip)
     {
-        // Get all locations on trips.
-        $tripLocs = $trip->getTripLocations()
-            ->filter(function (TripLocation $tripLocation) {
-                return $tripLocation->getIsPublic() == true;
-            });
-
-        // Reindex array keys.
-
-        $arrayContent['locations'] = [];
-        if($tripLocs) {
-            $index = 0;
-            foreach($tripLocs as $tripLoc) {
-                // Get Images on this locations.
-                $tripLocImages = $tripLoc->getTripLocImg();
-                $tripLocImg = [];
-                if($tripLocImages) {
-                    foreach($tripLocImages as $tripLocImage) {
-                        $tripLocImg[] = $tripLocImage->getTripImgUrl();
-                    }
-                }
-
-                $arrayContent['locations'][] = [
-                    'id' => $tripLoc->getId(),
-                    'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
-                    'tripLocName' => $tripLoc->getTripLocName(),
-                    'tripLocDesc' => $tripLoc->getTripLocDesc(),
-                    'tripLocImg' => $tripLocImg,
-                    'tripLatLon' => (!empty($tripLoc->getTripLatLon())) ? explode(",", $tripLoc->getTripLatLon()) : [],
-                    'createdAt' => $tripLoc->getCreatedAt()->format("F d Y, H:ma"),
-                    'posTimeline' => ($index % 2 == 0) ? 'pos-left clearfix' : 'pos-right clearfix',
-                    'link' => $this->generateUrl('trip_location_show', [
-                        'id' => $tripLoc->getId(),
-                    ]),
-                    'linkCat' => $this->generateUrl('trip_category_show', [
-                        'id' => $tripLoc->getTripCategory()->getId(),
-                    ]),
-                ];
-                $index++;
-            }
-        }
+        // Call TripDataRenderer service.
+        $tripData = $this->get('trip.data_renderer');
+        $arrayContent = $tripData->TripRenderLocation($trip);
 
         return new JsonResponse($arrayContent);
 
@@ -114,6 +74,14 @@ class TripController extends Controller
         return $this->render('TriplogBundle:Trip:show.html.twig', [
             'trip' => $trip,
         ]);
+    }
+
+    /**
+     * @Route("/maps", name="trips_map")
+     */
+    public function mapShowAction()
+    {
+        return $this->render('@Triplog/Trip/map.show.html.twig');
     }
 
 }

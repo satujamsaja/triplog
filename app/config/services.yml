@@ -7,3 +7,6 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    trip.data_renderer:
+        class: TriplogBundle\Service\TripDataRenderer
+        arguments: ['@doctrine.orm.entity_manager', '@router']

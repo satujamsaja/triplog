@@ -1,15 +1,21 @@
-{% block title %}Triplog{% endblock %}
 {% extends 'base.html.twig' %}
+{% block title %}Locations Map{% endblock %}
 
 {% block navbar %}
     <ul class="nav navbar-nav">
         <li><a href="{{ path('trip_list') }}">Trips</a></li>
         <li><a href="{{ path('trip_categories') }}">Categories</a></li>
         <li><a href="{{ path('trip_locations') }}">Locations</a></li>
-        <li><a href="{{ path('trips_map') }}">Maps</a></li>
+        <li class="active"><a href="{{ path('trips_map') }}">Maps</a></li>
     </ul>
 {% endblock %}
 
 {% block body %}
-Hello World
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix">
+            </div>
+            <div id="js-map"></div>
+        </div>
+    </div>
 {% endblock %}
