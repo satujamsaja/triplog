@@ -25,6 +25,17 @@ class TripLocationRepository extends EntityRepository
     /**
      * @return TripLocation[]
      */
+    public function findAllOrderByDate()
+    {
+        return $this->createQueryBuilder('tripLocation')
+            ->addOrderBy('tripLocation.createdAt', 'DESC')
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @return TripLocation[]
+     */
     public function findOnePublicById($id)
     {
         return $this->createQueryBuilder('tripLocation')

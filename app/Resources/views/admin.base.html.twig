@@ -13,6 +13,7 @@
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
             {% stylesheets filter="scssphp" filter="cssrewrite" filter="?uglifycss" output="css/compiled/admin.min.css"
+                "@TriplogBundle/Resources/public/css/bootflat.css"
                 "@TriplogBundle/Resources/public/css/admin/*.css"
                 %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -47,6 +48,11 @@
                 {% block sidebar %}{% endblock %}
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success alert-wrapper">
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
                 {% block body %}{% endblock %}
                 </div>
             </div>
@@ -55,6 +61,9 @@
             {% javascripts filter="?jsqueeze" output="js/compiled/admin.vendor.min.js"
                 "js/vendor/jquery.min.js"
                 "js/vendor/bootstrap.min.js"
+                "js/vendor/icheck.min.js"
+                "js/vendor/jquery.fs.selecter.min.js"
+                "js/vendor/jquery.fs.stepper.min.js"
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}

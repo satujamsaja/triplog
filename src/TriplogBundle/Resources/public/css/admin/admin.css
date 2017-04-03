@@ -59,7 +59,7 @@
  */
 
 .breacrumb-wrapper {
-    margin-top: 50px;
+    margin-top: 53px;
 }
 
 /*
@@ -69,3 +69,21 @@
 .action-links {
     padding:10px 0px;
 }
+
+
+/*
+ * Form
+ */
+
+.form-wrapper {
+    padding:20px;
+}
+
+/*
+ * Alert
+ */
+
+.alert-wrapper {
+    margin-top: 53px;
+}
+

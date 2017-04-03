@@ -88,5 +88,8 @@ class TripCategory
         return $this->tripLocations;
     }
 
-
+    public function __toString()
+    {
+        return $this->getTripCatName();
+    }
 }
