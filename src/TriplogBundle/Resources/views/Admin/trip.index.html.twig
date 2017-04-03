@@ -1,0 +1,52 @@
+{% block title %}Triplog Admin{% endblock %}
+{% extends 'admin.base.html.twig' %}
+{% block sidebar %}
+    <ul class="nav nav-sidebar">
+        <li class="active"><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
+        <li><a href="{{ path('admin_trip_categories_list') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Categories</a></li>
+        <li><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <div class="breacrumb-wrapper">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Trips</a></li>
+            <li><a href="#">List</a></li>
+        </ol>
+    </div>
+    <div class="messages"></div>
+    <div class="action-links clearfix">
+        <a href="#" class="btn btn-success btn-small pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Trip</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Trip list</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Desc</th>
+                <th>Public</th>
+                <th>Created At</th>
+                <th>Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for trip in trips %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ trip.tripName }}</td>
+                <td>{{ trip.tripDesc | slice(0,20)}}...</td>
+                <td>{% if trip.isPublic == 1 %}Public{% else %}Private{% endif %}</td>
+                <td>{{ trip.createdAt | date("Y-m-d H:i:s") }}</td>
+                <td>
+                    <a href="#" class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                    <a href="#" class="btn btn-danger"><i class="fa fa-minus-square" aria-hidden="true"></i> Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

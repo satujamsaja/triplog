@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use TriplogBundle\Entity\TripCategory;
-use TriplogBundle\Entity\TripLocation;
+
 
 class TripCategoryController extends Controller
 {

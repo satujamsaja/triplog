@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets filter="cssrewrite" output="css/compiled/admin.vendor.min.css"
+                "css/vendor/bootstrap.min.css"
+                "css/vendor/font-awesome.min.css"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            {% stylesheets filter="scssphp" filter="cssrewrite" filter="?uglifycss" output="css/compiled/admin.min.css"
+                "@TriplogBundle/Resources/public/css/admin/*.css"
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--[if lt IE 9]>
+        <script src="{{ asset('js/html5shiv.js') }}"></script>
+        <script src="{{ asset('js/respond.min.js') }}"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('home') }}">TripLog</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    {% block navbar %}{% endblock %}
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                {% block sidebar %}{% endblock %}
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            {% javascripts filter="?jsqueeze" output="js/compiled/admin.vendor.min.js"
+                "js/vendor/jquery.min.js"
+                "js/vendor/bootstrap.min.js"
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            {% javascripts filter="?jsqueeze" filter="?uglifyjs2" output="js/compiled/admin.min.js"
+                "@TriplogBundle/Resources/public/js/admin/*.js"
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

@@ -6,7 +6,6 @@ namespace TriplogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use TriplogBundle\Entity\TripImage;
 use TriplogBundle\Entity\TripLocation;
 
 
