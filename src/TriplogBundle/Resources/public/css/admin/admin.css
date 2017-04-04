@@ -79,6 +79,10 @@
     padding:20px;
 }
 
+.form-wrapper .checkbox {
+    margin-left: 15px;
+}
+
 /*
  * Alert
  */
@@ -87,3 +91,9 @@
     margin-top: 53px;
 }
 
+/*
+ * Datepicker menu
+ */
+.dropdown-menu {
+    background-color: #eee;
+}

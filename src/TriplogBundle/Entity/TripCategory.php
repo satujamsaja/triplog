@@ -4,6 +4,7 @@
 namespace TriplogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +22,13 @@ class TripCategory
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $tripCatName;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $createdAt;
 

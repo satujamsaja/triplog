@@ -6,6 +6,7 @@ namespace TriplogBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use TriplogBundle\Entity\Trip;
 
 /**
  *@Route("/admin")
@@ -47,6 +48,31 @@ class TripAdminController extends Controller
         }
 
         return $this->render('TriplogBundle:Admin/Trip:new.html.twig',[
+            'tripForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/trip/{id}/edit", name="admin_trip_edit")
+     */
+    public function editAction(Request $request, Trip $trip)
+    {
+        $form = $this->createForm('TriplogBundle\Form\TripFormType', $trip);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $trip = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($trip);
+            $em->flush();
+
+            $this->addFlash('success', 'Trip updated.');
+
+            return $this->redirectToRoute('admin_trip_list');
+        }
+
+        return $this->render('TriplogBundle:Admin/Trip:edit.html.twig',[
             'tripForm' => $form->createView()
         ]);
     }

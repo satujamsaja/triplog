@@ -4,6 +4,7 @@
 namespace TriplogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,12 +23,14 @@ class TripLocation
     /**
      * @ORM\ManyToOne(targetEntity="Trip", inversedBy="tripLocations")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank()
      */
     private $trip;
 
     /**
      * @ORM\ManyToOne(targetEntity="TripCategory", inversedBy="tripLocations")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank()
      */
     private $tripCategory;
 
@@ -39,6 +42,7 @@ class TripLocation
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $tripLocName;
 
@@ -59,6 +63,7 @@ class TripLocation
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $createdAt;
 

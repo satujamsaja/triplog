@@ -26,10 +26,10 @@
     </div>
 {% endblock %}
 
-{% set coord = location.tripLatLon|split(',') %}
-
 {% block javascripts %}
     {{ parent() }}
+    {% if location.tripLatLon != '' %}
+        {% set coord = location.tripLatLon|split(',') %}
     <script>
         function initMap() {
             var LatLng = {lat: {{ coord[0] }}, lng: {{ coord[1]}}};
@@ -49,5 +49,6 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4IIuFO5xvwsGKS_aewpGebzSOJNveo40&callback=initMap" async defer></script>
+    {% endif %}
 {% endblock %}
 
