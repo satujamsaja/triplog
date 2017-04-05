@@ -51,11 +51,13 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 {% for msg in app.session.flashBag.get('success') %}
                     <div class="alert alert-success alert-wrapper">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         {{ msg }}
                     </div>
                 {% endfor %}
                 {% for msg in app.session.flashBag.get('error') %}
                     <div class="alert alert-danger alert-wrapper">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         {{ msg }}
                     </div>
                 {% endfor %}

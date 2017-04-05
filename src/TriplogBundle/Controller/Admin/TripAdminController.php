@@ -76,4 +76,29 @@ class TripAdminController extends Controller
             'tripForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/trip/{id}/delete", name="admin_trip_delete")
+     */
+    public function deleteAction(Request $request, Trip $trip)
+    {
+        $form = $this->createForm('TriplogBundle\Form\TripFormType', $trip);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $trip = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($trip);
+            $em->flush();
+
+            $this->addFlash('success', 'Trip deleted.');
+
+            return $this->redirectToRoute('admin_trip_list');
+        }
+
+        return $this->render('TriplogBundle:Admin/Trip:delete.html.twig',[
+            'tripForm' => $form->createView()
+        ]);
+    }
 }

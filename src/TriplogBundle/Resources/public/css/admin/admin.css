@@ -91,6 +91,10 @@
     margin-top: 53px;
 }
 
+.alert-message {
+    margin:20px;
+}
+
 /*
  * Datepicker menu
  */
