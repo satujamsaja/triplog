@@ -7,6 +7,7 @@ namespace TriplogBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use TriplogBundle\Entity\TripLocation;
 
 /**
  * @Route("/admin")
@@ -48,6 +49,31 @@ class TripLocationController extends Controller
         }
 
         return $this->render('TriplogBundle:Admin/Location:new.html.twig',[
+            'locationForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/location/{id}/edit", name="admin_location_edit")
+     */
+    public function editAction(Request $request, TripLocation $tripLocation)
+    {
+        $form = $this->createForm('TriplogBundle\Form\TripLocationFormType', $tripLocation);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $location = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($location);
+            $em->flush();
+
+            $this->addFlash('success', 'Location updated.');
+
+            return $this->redirectToRoute('admin_trip_locations_list');
+        }
+
+        return $this->render('TriplogBundle:Admin/Location:edit.html.twig',[
             'locationForm' => $form->createView()
         ]);
     }

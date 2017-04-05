@@ -16,12 +16,12 @@ class TripFormType extends AbstractType
             ->add('tripDesc')
             ->add('isPublic')
             ->add('createdAt', DateTimeType::class,[
-                'data' => new \DateTime('now'),
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd  HH:mm',
                 'attr' => [
-                    'class' => 'js-datetimepicker'
-                ]
+                    'class' => 'js-datetimepicker',
+                ],
+                'html5' => false,
+                'format' => 'MM/dd/y h:m a'
             ]);
     }
 

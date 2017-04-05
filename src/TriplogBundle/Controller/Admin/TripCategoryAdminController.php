@@ -6,6 +6,7 @@ namespace TriplogBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use TriplogBundle\Entity\TripCategory;
 
 /**
  * @Route("/admin")
@@ -47,6 +48,31 @@ class TripCategoryAdminController extends Controller
         }
 
         return $this->render('TriplogBundle:Admin/Category:new.html.twig',[
+            'categoryForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/category/{id}/edit", name="admin_category_edit")
+     */
+    public function editAction(Request $request, TripCategory $tripCategory)
+    {
+        $form = $this->createForm('TriplogBundle\Form\TripCategoryFormType', $tripCategory);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $category = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            $this->addFlash('success', 'Category updated.');
+
+            return $this->redirectToRoute('admin_trip_categories_list');
+        }
+
+        return $this->render('TriplogBundle:Admin/Category:edit.html.twig',[
             'categoryForm' => $form->createView()
         ]);
     }

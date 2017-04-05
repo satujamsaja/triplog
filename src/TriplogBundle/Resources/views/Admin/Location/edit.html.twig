@@ -12,12 +12,12 @@
         <ol class="breadcrumb">
             <li><a href="{{ path('admin_dashboard') }}">Home</a></li>
             <li><a href="{{ path('admin_trip_locations_list') }}">Locations</a></li>
-            <li>New</li>
+            <li>Edit</li>
         </ol>
     </div>
     <div class="messages"></div>
     <div class="panel panel-default">
-        <div class="panel-heading">Add new location</div>
+        <div class="panel-heading">Edit location</div>
         <div class="form-wrapper">
             {{ form_start(locationForm) }}
             {{ form_row(locationForm.trip, {

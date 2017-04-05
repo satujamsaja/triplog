@@ -35,13 +35,12 @@ class TripLocationFormType extends AbstractType
             ->add('tripLatLon')
             ->add('isPublic')
             ->add('createdAt', DateTimeType::class,[
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'js-datetimepicker'
+                    'class' => 'js-datetimepicker',
                 ],
                 'html5' => false,
+                'format' => 'MM/dd/y h:m a'
             ]);
     }
 

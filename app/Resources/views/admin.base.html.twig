@@ -9,6 +9,7 @@
             {% stylesheets filter="cssrewrite" output="css/compiled/admin.vendor.min.css"
                 "css/vendor/bootstrap.min.css"
                 "css/vendor/font-awesome.min.css"
+                "css/vendor/bootstrap-datetimepicker.min.css"
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -66,7 +67,6 @@
             {% javascripts filter="?jsqueeze" output="js/compiled/admin.vendor.min.js"
                 "js/vendor/jquery.min.js"
                 "js/vendor/bootstrap.min.js"
-                "js/vendor/moment.min.js"
                 "js/vendor/bootstrap-datetimepicker.min.js"
             %}
                 <script src="{{ asset_url }}"></script>

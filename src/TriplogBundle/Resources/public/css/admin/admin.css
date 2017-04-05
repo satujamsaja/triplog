@@ -97,3 +97,11 @@
 .dropdown-menu {
     background-color: #eee;
 }
+
+/*
+ * Label
+ */
+
+label.required {
+    color:#da4453;
+}

@@ -13,13 +13,13 @@ class TripCategoryFormType extends AbstractType
     {
         $builder
             ->add('tripCatName')
-            ->add('createdAt', DateTimeType::class, [
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
+            ->add('createdAt', DateTimeType::class,[
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'js-datetimepicker'
-                ]
+                    'class' => 'js-datetimepicker',
+                ],
+                'html5' => false,
+                'format' => 'MM/dd/y h:m a'
             ]);
     }
 
