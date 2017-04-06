@@ -1,0 +1,47 @@
+{% block title %}Triplog Admin{% endblock %}
+{% extends 'admin.base.html.twig' %}
+{% block sidebar %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
+        <li class="active"><a href="{{ path('admin_trip_categories_list') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Categories</a></li>
+        <li><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <div class="breacrumb-wrapper">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">New</a></li>
+        </ol>
+    </div>
+    <div class="messages"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Delete category</div>
+        <div class="alert alert-danger alert-message">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Are you sure want to delete this category ?
+        </div>
+        <div class="form-wrapper-delete">
+            {{ form_start(categoryForm) }}
+            {{ form_row(categoryForm.tripCatName, {
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
+                }
+            }) }}
+            {{ form_row(categoryForm.createdAt, {
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
+                }
+            }) }}
+            <button type="submit" class="btn btn-warning" formnovalidate>Delete</button>
+            {{ form_end(categoryForm) }}
+        </div>
+    </div>
+{% endblock %}

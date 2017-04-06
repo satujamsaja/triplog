@@ -29,7 +29,7 @@ class TripLocation
 
     /**
      * @ORM\ManyToOne(targetEntity="TripCategory", inversedBy="tripLocations")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=true,onDelete="SET NULL")
      * @Assert\NotBlank()
      */
     private $tripCategory;

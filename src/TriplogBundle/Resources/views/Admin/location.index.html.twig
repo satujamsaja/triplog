@@ -41,7 +41,7 @@
                 <td>{{ location.tripLocName }}</td>
                 <td>{{ location.tripLocDesc | slice(0,20)}}...</td>
                 <td>{{ location.trip.tripName }}</td>
-                <td>{{ location.tripCategory.tripCatName }}</td>
+                <td>{% if location.tripCategory is not null %} {{ location.tripCategory.tripCatName }}{% endif %}</td>
                 <td>{{ location.tripLatLon }}</td>
                 <td>{% if location.isPublic == 1 %}Public{% else %}Private{% endif %}</td>
                 <td>{{ location.createdAt | date("Y-m-d H:i:s") }}</td>

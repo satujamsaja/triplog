@@ -42,7 +42,7 @@ class TripLocationController extends Controller
             ->findOnePublicById($tripLocation->getId());
 
         if(!$location) {
-            throw $this->createNotFoundException('No trip found');
+            throw $this->createNotFoundException('No location found');
         }
 
         return $this->render('TriplogBundle:Location:show.html.twig', [

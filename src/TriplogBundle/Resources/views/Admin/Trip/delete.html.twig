@@ -12,40 +12,48 @@
         <ol class="breadcrumb">
             <li><a href="{{ path('admin_dashboard') }}">Home</a></li>
             <li><a href="{{ path('admin_trip_list') }}">Trips</a></li>
-            <li>Edit</li>
+            <li>Delete</li>
         </ol>
     </div>
     <div class="messages"></div>
     <div class="panel panel-default">
-        <div class="panel-heading">Edit trip</div>
+        <div class="panel-heading">Delete trip</div>
         <div class="alert alert-danger alert-message">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             By deleting this trip you also delete location and image attached to this trip.
         </div>
-        <div class="form-wrapper">
+        <div class="form-wrapper-delete">
             {{ form_start(tripForm) }}
             {{ form_row(tripForm.tripName,{
-                'label' : 'Name*',
-                'attr' : {
-                    'disabled' : 'disabled'
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
                 }
             }) }}
             {{ form_row(tripForm.tripDesc,{
-                'label' : 'Description',
-                'attr' : {
-                    'disabled' : 'disabled'
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
                 }
             }) }}
             {{ form_row(tripForm.isPublic,{
-                'label' : 'Public',
-                'attr' : {
-                    'disabled' : 'disabled'
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
                 }
             }) }}
             {{ form_row(tripForm.createdAt, {
-                'label' : 'Date*',
-                'attr' : {
-                    'disabled' : 'disabled'
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
                 }
             }) }}
             <button type="submit" class="btn btn-danger" formnovalidate>Delete</button>

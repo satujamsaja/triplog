@@ -28,7 +28,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% if location.tripLatLon != '' %}
+    {% if location.tripLatLon !='' %}
         {% set coord = location.tripLatLon|split(',') %}
     <script>
         function initMap() {
