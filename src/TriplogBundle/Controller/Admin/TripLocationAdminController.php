@@ -12,7 +12,7 @@ use TriplogBundle\Entity\TripLocation;
 /**
  * @Route("/admin")
  */
-class TripLocationController extends Controller
+class TripLocationAdminController extends Controller
 {
     /**
      * @Route("/locations", name="admin_trip_locations_list")
@@ -74,6 +74,31 @@ class TripLocationController extends Controller
         }
 
         return $this->render('TriplogBundle:Admin/Location:edit.html.twig',[
+            'locationForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/location/{id}/delete", name="admin_location_delete")
+     */
+    public function deleteAction(Request $request, TripLocation $tripLocation)
+    {
+        $form = $this->createForm('TriplogBundle\Form\TripLocationFormType', $tripLocation);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $location = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($location);
+            $em->flush();
+
+            $this->addFlash('success', 'Location deleted.');
+
+            return $this->redirectToRoute('admin_trip_locations_list');
+        }
+
+        return $this->render('TriplogBundle:Admin/Location:delete.html.twig',[
             'locationForm' => $form->createView()
         ]);
     }

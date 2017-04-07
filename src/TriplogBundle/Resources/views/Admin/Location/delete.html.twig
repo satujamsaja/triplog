@@ -2,28 +2,28 @@
 {% extends 'admin.base.html.twig' %}
 {% block sidebar %}
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
+        <li><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
         <li><a href="{{ path('admin_trip_categories_list') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Categories</a></li>
-        <li><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
+        <li class="active"><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
     </ul>
 {% endblock %}
 {% block body %}
     <div class="breacrumb-wrapper">
         <ol class="breadcrumb">
             <li><a href="{{ path('admin_dashboard') }}">Home</a></li>
-            <li><a href="{{ path('admin_trip_list') }}">Trips</a></li>
+            <li><a href="{{ path('admin_trip_locations_list') }}">Locations</a></li>
             <li>Delete</li>
         </ol>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Delete trip</div>
+        <div class="panel-heading">Delete location</div>
         <div class="alert alert-danger alert-message">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            By deleting this trip you also delete location and image attached to this trip.
+            Are you sure want to delete this category ?
         </div>
         <div class="form-wrapper-delete">
-            {{ form_start(tripForm) }}
-            {{ form_row(tripForm.tripName,{
+            {{ form_start(locationForm) }}
+            {{ form_row(locationForm.trip, {
                 'label_attr' : {
                     'class' : 'hidden'
                 },
@@ -31,7 +31,7 @@
                     'class' : 'hidden'
                 }
             }) }}
-            {{ form_row(tripForm.tripDesc,{
+            {{ form_row(locationForm.tripCategory,{
                 'label_attr' : {
                     'class' : 'hidden'
                 },
@@ -39,7 +39,7 @@
                     'class' : 'hidden'
                 }
             }) }}
-            {{ form_row(tripForm.isPublic,{
+            {{ form_row(locationForm.tripLocName,{
                 'label_attr' : {
                     'class' : 'hidden'
                 },
@@ -47,7 +47,7 @@
                     'class' : 'hidden'
                 }
             }) }}
-            {{ form_row(tripForm.createdAt, {
+            {{ form_row(locationForm.tripLocDesc,{
                 'label_attr' : {
                     'class' : 'hidden'
                 },
@@ -55,10 +55,32 @@
                     'class' : 'hidden'
                 }
             }) }}
-            <button type="submit" class="btn btn-danger" formnovalidate>Delete</button>
-            {{ form_end(tripForm) }}
+            {{ form_row(locationForm.tripLatLon,{
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
+                }
+            }) }}
+            {{ form_row(locationForm.isPublic,{
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
+                }
+            }) }}
+            {{ form_row(locationForm.createdAt,{
+                'label_attr' : {
+                    'class' : 'hidden'
+                },
+                'attr': {
+                    'class' : 'hidden'
+                }
+            }) }}
+            <button type="submit" class="btn btn-warning" formnovalidate>Save</button>
+            {{ form_end(locationForm) }}
         </div>
     </div>
 {% endblock %}
-
-
