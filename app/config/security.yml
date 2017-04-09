@@ -2,10 +2,13 @@
 # http://symfony.com/doc/current/security.html
 security:
 
+    encoders:
+        TriplogBundle\Entity\User: bcrypt
+
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        trip_users:
+          entity: { class: TriplogBundle\Entity\User, property: email }
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +18,12 @@ security:
 
         main:
             anonymous: ~
+            guard:
+                authenticator:
+                    - trip.login_form_authenticator
+            logout:
+                path: /logout
+
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

@@ -26,5 +26,9 @@ TripLogBundle\Entity\TripImage:
         tripImgUrl: '<imageUrl(540,405,"city")>'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
+TripLogBundle\Entity\User:
+    user_{1..10}:
+        email: 'satujamsaja+<current()>@gmail.com'
+        plainPassword: 'wiro212'
 
 

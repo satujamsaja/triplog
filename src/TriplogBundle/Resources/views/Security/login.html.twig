@@ -1,0 +1,27 @@
+{% block title %}Triplog Login{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix">
+            </div>
+            <div id="login-wrapper">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Sign In</h3></div>
+                    <div class="panel-body">
+                        {{ form_start(loginForm) }}
+                            {{ form_row(loginForm._username) }}
+                            {{ form_row(loginForm._password) }}
+                            <button type="submit" class="btn btn-info">Login</button>
+                        {{ form_end(loginForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

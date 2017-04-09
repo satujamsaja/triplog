@@ -52,7 +52,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-right: 0;
 }
 
-/* Timeline Location */
+/*
+ * Timeline image
+ */
 .events .events-image {
     display: block;
     overflow: hidden;
@@ -62,12 +64,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     width: 100%;
 }
 
-/* Categories */
+/*
+ * Categories
+ */
 .content-body {
     margin-top: 25px;
 }
 
-/* Gallery */
+/*
+ * Gallery
+ */
 .gallery {
 
 }
@@ -79,4 +85,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .gallery .item img {
     width: 100%;
+}
+
+/*
+ * Login
+ */
+
+#login-wrapper {
+    width: 320px;
+    margin: 50px auto 0 auto;
+}
+
+#login-wrapper h3 {
+    margin:0;
+    font-size: 20px;
 }

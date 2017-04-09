@@ -10,3 +10,14 @@ services:
     trip.data_renderer:
         class: TriplogBundle\Service\TripDataRenderer
         arguments: ['@doctrine.orm.entity_manager', '@router']
+
+    trip.login_form_authenticator:
+        class: TriplogBundle\Security\LoginFormAuthenticator
+        autowire: true
+
+    trip.doctrine.hash_password_listener:
+        class: TriplogBundle\Doctrine\HashPasswordListener
+        autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }
+
