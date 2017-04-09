@@ -80,6 +80,9 @@ class TripDataRenderer
                     'linkCat' => $this->router->generate('trip_category_show', [
                         'id' => $tripLoc->getTripCategory()->getId(),
                     ]),
+                    'linkTrip' => $this->router->generate('trip_show', [
+                        'id' => $tripLoc->getTrip()->getId(),
+                    ]),
                 ];
                 $index++;
             }
@@ -122,6 +125,9 @@ class TripDataRenderer
                     'linkCat' => $this->router->generate('trip_category_show', [
                         'id' => $tripLoc->getTripCategory()->getId(),
                     ]),
+                    'linkTrip' => $this->router->generate('trip_show', [
+                        'id' => $tripLoc->getTrip()->getId(),
+                    ]),
                 ];
                 $index++;
             }
@@ -162,6 +168,9 @@ class TripDataRenderer
                     ]),
                     'linkCat' => $this->router->generate('trip_category_show', [
                         'id' => $tripLocation->getTripCategory()->getId(),
+                    ]),
+                    'linkTrip' => $this->router->generate('trip_show', [
+                        'id' => $tripLocation->getTrip()->getId(),
                     ]),
                 ];
             }
@@ -226,6 +235,9 @@ class TripDataRenderer
                     ]),
                     'linkCat' => $this->router->generate('trip_category_show', [
                         'id' => $tripLoc->getTripCategory()->getId(),
+                    ]),
+                    'linkTrip' => $this->router->generate('trip_show', [
+                        'id' => $tripLoc->getTrip()->getId(),
                     ]),
                 ];
                 $index++;
