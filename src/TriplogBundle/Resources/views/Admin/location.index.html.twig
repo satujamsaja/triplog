@@ -39,7 +39,7 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td>{{ location.tripLocName }}</td>
-                <td>{{ location.tripLocDesc | slice(0,20)}}...</td>
+                <td>{{ location.tripLocDesc | slice(0,10)}}...</td>
                 <td>{{ location.trip.tripName }}</td>
                 <td>{% if location.tripCategory is not null %} {{ location.tripCategory.tripCatName }}{% endif %}</td>
                 <td>{{ location.tripLatLon }}</td>
