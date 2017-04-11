@@ -3,6 +3,7 @@
 
 namespace TriplogBundle\Controller\Admin;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,7 @@ use TriplogBundle\Entity\Trip;
 
 /**
  *@Route("/admin")
+ *@Security("is_granted('ROLE_MANAGE_TRIP')")
  */
 class TripAdminController extends Controller
 {

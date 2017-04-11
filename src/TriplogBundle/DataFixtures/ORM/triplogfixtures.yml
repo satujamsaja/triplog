@@ -30,5 +30,5 @@ TripLogBundle\Entity\User:
     user_{1..10}:
         email: 'satujamsaja+<current()>@gmail.com'
         plainPassword: 'wiro212'
-
+        roles: ['ROLE_ADMIN']
 

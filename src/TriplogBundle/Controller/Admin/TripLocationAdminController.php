@@ -5,12 +5,14 @@ namespace TriplogBundle\Controller\Admin;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use TriplogBundle\Entity\TripLocation;
 
 /**
  * @Route("/admin")
+ * @Security("is_granted('ROLE_MANAGE_LOCATION')")
  */
 class TripLocationAdminController extends Controller
 {

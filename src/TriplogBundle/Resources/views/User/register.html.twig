@@ -1,0 +1,29 @@
+{% block title %}Triplog Login{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-header clearfix">
+            </div>
+            <div id="login-wrapper">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Register</h3></div>
+                    <div class="panel-body">
+                        {{ form_start(registerForm) }}
+                        {{ form_row(registerForm.email) }}
+                        {{ form_row(registerForm.plainPassword.first, {
+                            'label' : 'Password'
+                        }) }}
+                        {{ form_row(registerForm.plainPassword.second, {
+                            'label' : 'Retype password'
+                        }) }}
+                        <button type="submit" class="btn btn-info" formnovalidate>Register</button>
+                        {{ form_end(registerForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

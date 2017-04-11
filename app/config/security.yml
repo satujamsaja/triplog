@@ -5,6 +5,9 @@ security:
     encoders:
         TriplogBundle\Entity\User: bcrypt
 
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_MANAGE_CONTENT, ROLE_MANAGE_TRIP, ROLE_MANAGE_CATEGORY, ROLE_MANAGE_LOCATION]
+
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         trip_users:
