@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use TriplogBundle\Entity\Trip;
 
 /**
- *@Route("/admin")
- *@Security("is_granted('ROLE_MANAGE_TRIP')")
+ * @Route("/admin")
+ * @Security("is_granted('ROLE_MANAGE_TRIP')")
  */
 class TripAdminController extends Controller
 {

@@ -35,6 +35,12 @@ class TripLocation
     private $tripCategory;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tripLocation")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    private $user;
+
+    /**
      * @ORM\OneToMany(targetEntity="TripImage", mappedBy="tripLocation")
      * @ORM\OrderBy({"createdAt"="DESC"})
      */
@@ -199,5 +205,23 @@ class TripLocation
     {
         $this->isPublic = $isPublic;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
 
 }

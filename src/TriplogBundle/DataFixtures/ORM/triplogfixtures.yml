@@ -1,6 +1,7 @@
 TripLogBundle\Entity\Trip:
     trip_{1..20}:
         tripName: '<tripName()>'
+        user: '@trip.user_*'
         tripDesc: '<sentence()>'
         isPublic: '<boolean(90)>'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
@@ -27,8 +28,9 @@ TripLogBundle\Entity\TripImage:
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
 TripLogBundle\Entity\User:
-    user_{1..10}:
+    trip.user_{1..10}:
         email: 'satujamsaja+<current()>@gmail.com'
         plainPassword: 'wiro212'
         roles: ['ROLE_ADMIN']
+        createdAt: '<dateTimeBetween("-200 days", "now")>'
 

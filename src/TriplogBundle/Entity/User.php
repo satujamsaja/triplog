@@ -2,6 +2,7 @@
 
 namespace TriplogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -21,6 +22,16 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Trip", mappedBy="user")
+     */
+    private $trip;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TripLocation", mappedBy="user")
+     */
+    private $tripLocation;
 
     /**
      * @ORM\Column(type="string", unique=true)
@@ -43,6 +54,18 @@ class User implements UserInterface
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->tripLocation = new ArrayCollection();
+        $this->trip = new ArrayCollection();
+    }
+
 
     public function getUsername()
     {
@@ -122,6 +145,54 @@ class User implements UserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return ArrayCollection|Trip[]
+     */
+    public function getTrip()
+    {
+        return $this->trip;
+    }
+
+    /**
+     * @param mixed $trip
+     */
+    public function setTrip($trip)
+    {
+        $this->trip = $trip;
+    }
+
+    /**
+     * @return ArrayCollection|TripLocation[]
+     */
+    public function getTripLocation()
+    {
+        return $this->tripLocation;
+    }
+
+    /**
+     * @param mixed $tripLocation
+     */
+    public function setTripLocation($tripLocation)
+    {
+        $this->tripLocation = $tripLocation;
     }
 
 

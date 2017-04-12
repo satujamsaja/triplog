@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * @Security("is_granted('ROLE_MANAGE_CONTENT')")
- *
  */
 class TripAdminDefaultController extends Controller
 {

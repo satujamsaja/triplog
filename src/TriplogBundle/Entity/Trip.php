@@ -21,6 +21,12 @@ class Trip
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="trip")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
@@ -47,7 +53,6 @@ class Trip
      * @ORM\OrderBy({"createdAt"="DESC"})
      */
     private $tripLocations;
-
 
     public function __construct()
     {
@@ -135,9 +140,27 @@ class Trip
         return $this->tripLocations;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
     public function __toString()
     {
        return $this->getTripName();
     }
+
 
 }
