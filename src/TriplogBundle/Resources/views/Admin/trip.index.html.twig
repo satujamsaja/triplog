@@ -5,6 +5,7 @@
         <li class="active"><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
         <li><a href="{{ path('admin_trip_categories_list') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Categories</a></li>
         <li><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
+        <li><a href="{{ path('admin_trip_user_list') }}"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
     </ul>
 {% endblock %}
 {% block body %}
@@ -24,7 +25,9 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>Photo</th>
                 <th>Name</th>
+                <th>Trip</th>
                 <th>Desc</th>
                 <th>Public</th>
                 <th>Created At</th>
@@ -35,9 +38,11 @@
             {% for trip in trips %}
             <tr>
                 <td>{{ loop.index }}</td>
+                <td><img width="50" height="50" src="{{ trip.user.profilePicture }}"></td>
+                <td>{{ trip.user.firstName }} {{ trip.user.lastName }}</td>
                 <td>{{ trip.tripName }}</td>
                 <td>{{ trip.tripDesc | slice(0,20)}}...</td>
-                <td>{% if trip.isPublic == 1 %}Public{% else %}Private{% endif %}</td>
+                <td>{% if trip.isPublic == 1 %}<span class="badge badge-success">Public</span>{% else %}<span class="badge badge-danger">Private</span>{% endif %}</td>
                 <td>{{ trip.createdAt | date("Y-m-d H:i:s") }}</td>
                 <td>
                     <a href="{{ path('admin_trip_edit', {"id" : trip.id }) }}" class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>

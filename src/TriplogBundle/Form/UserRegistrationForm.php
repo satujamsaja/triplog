@@ -3,6 +3,7 @@
 namespace TriplogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -16,6 +17,15 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('firstName')
+            ->add('lastName')
+            ->add('gender', ChoiceType::class,[
+                'choices' => [
+                    'male' => 'Male',
+                    'female' => 'Female'
+                ],
+                'placeholder' => 'Select gender'
+            ])
             ->add('email', EmailType::class)
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class

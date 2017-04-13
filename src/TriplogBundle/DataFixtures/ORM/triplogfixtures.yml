@@ -30,6 +30,10 @@ TripLogBundle\Entity\TripImage:
 TripLogBundle\Entity\User:
     trip.user_{1..10}:
         email: 'satujamsaja+<current()>@gmail.com'
+        firstName: <firstName()>
+        lastName: <lastName()>
+        gender: <gender()>
+        profilePicture: '<imageUrl(100,100,"people")>'
         plainPassword: 'wiro212'
         roles: ['ROLE_ADMIN']
         createdAt: '<dateTimeBetween("-200 days", "now")>'

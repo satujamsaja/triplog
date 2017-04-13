@@ -48,4 +48,17 @@ class LoadUserData implements FixtureInterface
 
         return $tripCoord[$key];
     }
+
+    public function gender()
+    {
+        $gender = [
+            'male',
+            'female'
+        ];
+
+        $key = array_rand($gender);
+
+        return $gender[$key];
+
+    }
 }

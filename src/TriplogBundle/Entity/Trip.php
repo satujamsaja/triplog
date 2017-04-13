@@ -57,6 +57,7 @@ class Trip
     public function __construct()
     {
         $this->tripLocations = new ArrayCollection();
+        $this->createdAt = new \DateTime('now');
     }
 
 

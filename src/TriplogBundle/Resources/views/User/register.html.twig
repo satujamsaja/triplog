@@ -11,6 +11,9 @@
                     <div class="panel-heading"><h3>Register</h3></div>
                     <div class="panel-body">
                         {{ form_start(registerForm) }}
+                        {{ form_row(registerForm.firstName) }}
+                        {{ form_row(registerForm.lastName) }}
+                        {{ form_row(registerForm.gender)}}
                         {{ form_row(registerForm.email) }}
                         {{ form_row(registerForm.plainPassword.first, {
                             'label' : 'Password'

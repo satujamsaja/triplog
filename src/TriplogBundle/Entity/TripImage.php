@@ -34,6 +34,11 @@ class TripImage
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now');
+    }
+
     /**
      * @return mixed
      */

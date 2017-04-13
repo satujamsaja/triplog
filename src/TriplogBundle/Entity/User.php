@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @UniqueEntity(fields={"email"}, message="Email already registered")
+ * @UniqueEntity(fields={"email"}, message="Email already registered", groups={"Registration"})
  */
 class User implements UserInterface
 {
@@ -24,19 +24,38 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Registration"})
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Registration"})
+     */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\File(mimeTypes={"image/jpg", "image/png"})
+     */
+    private $profilePicture;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Registration"})
+     */
+    private $gender;
+
+    /**
      * @ORM\OneToMany(targetEntity="Trip", mappedBy="user")
      */
     private $trip;
 
     /**
-     * @ORM\OneToMany(targetEntity="TripLocation", mappedBy="user")
-     */
-    private $tripLocation;
-
-    /**
      * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\Email(groups={"Registration"})
      */
     private $email;
 
@@ -64,6 +83,7 @@ class User implements UserInterface
     {
         $this->tripLocation = new ArrayCollection();
         $this->trip = new ArrayCollection();
+        $this->createdAt = new \DateTime('now');
     }
 
 
@@ -156,6 +176,15 @@ class User implements UserInterface
     }
 
     /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -180,20 +209,67 @@ class User implements UserInterface
     }
 
     /**
-     * @return ArrayCollection|TripLocation[]
+     * @return mixed
      */
-    public function getTripLocation()
+    public function getFirstName()
     {
-        return $this->tripLocation;
+        return $this->firstName;
     }
 
     /**
-     * @param mixed $tripLocation
+     * @param mixed $firstName
      */
-    public function setTripLocation($tripLocation)
+    public function setFirstName($firstName)
     {
-        $this->tripLocation = $tripLocation;
+        $this->firstName = $firstName;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @param mixed $profilePicture
+     */
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
 
 }
