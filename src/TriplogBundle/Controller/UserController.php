@@ -38,4 +38,5 @@ class UserController extends Controller
             'registerForm' => $form->createView()
         ]);
     }
+
 }

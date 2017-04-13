@@ -26,4 +26,12 @@ class TripUserAdminController extends Controller
             'users' => $users
         ]);
     }
+
+    /**
+     * @Route("/user/new", name="admin_trip_user_new")
+     */
+    public function newAction()
+    {
+        return $this->render('TriplogBundle:Admin/User:new.html.twig');
+    }
 }
