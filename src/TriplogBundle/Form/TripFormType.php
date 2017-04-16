@@ -2,6 +2,8 @@
 
 namespace TriplogBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +15,15 @@ class TripFormType extends AbstractType
     {
         $builder
             ->add('tripName')
+            ->add('user', EntityType::class, [
+                'class' => 'TriplogBundle:User',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('user')
+                        ->orderBy('user.id', 'ASC');
+                },
+                'choice_label' => 'username',
+                'placeholder' => 'Select user'
+            ])
             ->add('tripDesc')
             ->add('isPublic')
             ->add('createdAt', DateTimeType::class,[

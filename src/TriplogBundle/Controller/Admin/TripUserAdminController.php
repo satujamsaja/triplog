@@ -6,6 +6,7 @@ namespace TriplogBundle\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\BrowserKit\Request;
 
 /**
  * @Route("/admin")
@@ -30,8 +31,16 @@ class TripUserAdminController extends Controller
     /**
      * @Route("/user/new", name="admin_trip_user_new")
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
+        $form = $this->createForm('TriplogBundle\Form\UserFormType');
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            
+        }
+
         return $this->render('TriplogBundle:Admin/User:new.html.twig');
     }
 }

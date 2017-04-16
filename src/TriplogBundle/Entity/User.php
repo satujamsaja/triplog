@@ -81,7 +81,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->tripLocation = new ArrayCollection();
         $this->trip = new ArrayCollection();
         $this->createdAt = new \DateTime('now');
     }
@@ -203,7 +202,7 @@ class User implements UserInterface
     /**
      * @param mixed $trip
      */
-    public function setTrip($trip)
+    public function setTrip(Trip $trip)
     {
         $this->trip = $trip;
     }

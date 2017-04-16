@@ -1,0 +1,25 @@
+{% block title %}Triplog Admin{% endblock %}
+{% extends 'admin.base.html.twig' %}
+{% block sidebar %}
+    <ul class="nav nav-sidebar">
+        <li><a href="{{ path('admin_trip_list') }}"><i class="fa fa-plane" aria-hidden="true"></i> Trips</a></li>
+        <li><a href="{{ path('admin_trip_categories_list') }}"><i class="fa fa-list-ul" aria-hidden="true"></i> Categories</a></li>
+        <li><a href="{{ path('admin_trip_locations_list') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> Locations</a></li>
+        <li class="active"><a href="{{ path('admin_trip_user_list') }}"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <div class="breacrumb-wrapper">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('admin_dashboard') }}">Home</a></li>
+            <li><a href="{{ path('admin_trip_user_list') }}">Users</a></li>
+            <li>New</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Add new user</div>
+        <div class="form-wrapper">
+
+        </div>
+    </div>
+{% endblock %}

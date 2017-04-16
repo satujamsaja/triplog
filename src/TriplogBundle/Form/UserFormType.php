@@ -10,12 +10,21 @@ class UserFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $builder->add('firstName')
+            ->add('lastName')
+            ->add('profilePicture')
+            ->add('gender')
+            ->add('email')
+            ->add('password')
+            ->add('roles')
+            ->add('createdAt');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults([
+            'data_class' => 'TriplogBundle\Entity\User'
+        ]);
     }
 
     public function getBlockPrefix()

@@ -23,6 +23,9 @@
             {{ form_row(tripForm.tripName,{
                 'label' : 'Name*',
             }) }}
+            {{ form_row(tripForm.user,{
+                'label' : 'User*',
+            }) }}
             {{ form_row(tripForm.tripDesc,{
                 'label' : 'Description'
             }) }}
@@ -36,12 +39,4 @@
             {{ form_end(tripForm) }}
         </div>
     </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        jQuery(document).ready(function($){
-            //$('.js-datetimepicker').datetimepicker();
-        });
-    </script>
 {% endblock %}
