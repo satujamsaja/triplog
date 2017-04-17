@@ -40,6 +40,14 @@ class TripUserAdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('Success', 'User created');
+
+            $this->redirectToRoute('admin_trip_user_list');
+
         }
 
         return $this->render('TriplogBundle:Admin/User:new.html.twig', [

@@ -5,6 +5,7 @@ namespace TriplogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,10 +25,11 @@ class UserFormType extends AbstractType
                 'placeholder' => 'Select gender'
             ])
             ->add('email')
-            ->add('password')
+            ->add('password', PasswordType::class)
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'ROLE_ADMIN' => 'Admin'
+                    '' => 'User',
+                    'ROLE_ADMIN' => 'Admin',
                 ],
                 'placeholder' => 'Select role'
             ])
@@ -44,7 +46,8 @@ class UserFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'TriplogBundle\Entity\User'
+            'data_class' => 'TriplogBundle\Entity\User',
+            'validation_groups' => ['Management'],
         ]);
     }
 

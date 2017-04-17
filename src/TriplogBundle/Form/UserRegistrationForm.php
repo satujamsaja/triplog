@@ -35,8 +35,8 @@ class UserRegistrationForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => 'TriplogBundle\Entity\User',
-            'validation_groups' => ['Defaults', 'Registration'],
+            'data_class' => 'TriplogBundle\Entity\User',
+            'validation_groups' => ['Registration'],
         ]);
     }
 

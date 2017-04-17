@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @UniqueEntity(fields={"email"}, message="Email already registered", groups={"Registration"})
+ * @UniqueEntity(fields={"email"}, message="Email already registered", groups={"Registration", "Management"})
  */
 class User implements UserInterface
 {
@@ -25,13 +25,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration", "Management"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration", "Management"})
      */
     private $lastName;
 
@@ -43,7 +43,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration", "Management"})
      */
     private $gender;
 
@@ -54,13 +54,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank(groups={"Registration"})
-     * @Assert\Email(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration", "Management"})
+     * @Assert\Email(groups={"Registration", "Management"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups={"Management"})
      */
     private $password;
 
@@ -70,12 +71,13 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $roles = [];
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(groups={"Management"})
      */
     private $createdAt;
 
@@ -155,8 +157,9 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        $this->roles = $roles;
+        $this->roles = (array) $roles;
     }
+
 
     /**
      * @return mixed
