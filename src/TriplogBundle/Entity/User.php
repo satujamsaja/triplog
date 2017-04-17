@@ -61,17 +61,17 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(groups={"Management"})
      */
     private $password;
 
     /**
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration", "Management"})
      */
     private $plainPassword;
 
     /**
      * @ORM\Column(type="json_array", nullable=true)
+     * @Assert\NotBlank(groups={"Management"})
      */
     private $roles = [];
 
@@ -157,7 +157,12 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        $this->roles = (array) $roles;
+        if(empty($roles)) {
+            $this->roles[] = 'ROLE_USER';
+        }
+        else {
+            $this->roles[] = $roles;
+        }
     }
 
 

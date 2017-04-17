@@ -24,7 +24,12 @@
             {{ form_row(userForm.lastName) }}
             {{ form_row(userForm.gender) }}
             {{ form_row(userForm.email) }}
-            {{ form_row(userForm.password) }}
+            {{ form_row(userForm.plainPassword.first, {
+                'label' : 'Password'
+            }) }}
+            {{ form_row(userForm.plainPassword.second, {
+                'label' : 'Retype password'
+            }) }}
             {{ form_row(userForm.roles) }}
             {{ form_row(userForm.profilePicture) }}
             {{ form_row(userForm.createdAt,{

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,10 +26,12 @@ class UserFormType extends AbstractType
                 'placeholder' => 'Select gender'
             ])
             ->add('email')
-            ->add('password', PasswordType::class)
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class
+            ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    '' => 'User',
+                    'ROLE_USER' => 'User',
                     'ROLE_ADMIN' => 'Admin',
                 ],
                 'placeholder' => 'Select role'

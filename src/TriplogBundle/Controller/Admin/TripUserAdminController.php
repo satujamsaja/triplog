@@ -46,7 +46,7 @@ class TripUserAdminController extends Controller
 
             $this->addFlash('Success', 'User created');
 
-            $this->redirectToRoute('admin_trip_user_list');
+            return $this->redirectToRoute('admin_trip_user_list');
 
         }
 
