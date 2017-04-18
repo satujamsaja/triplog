@@ -22,6 +22,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $user = $form->getData();
+            $user->setRoles('ROLE_USER');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -37,6 +38,14 @@ class UserController extends Controller
         return $this->render('TriplogBundle:User:register.html.twig', [
             'registerForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/profile/{id}", name="user_profile")
+     */
+    public function viewAction($id)
+    {
+        return $this->render('TriplogBundle:User:profile.html.twig');
     }
 
 }

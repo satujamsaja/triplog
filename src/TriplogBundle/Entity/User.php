@@ -157,12 +157,7 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        if(empty($roles)) {
-            $this->roles[] = 'ROLE_USER';
-        }
-        else {
-            $this->roles[] = $roles;
-        }
+        $this->roles[] = $roles;
     }
 
 

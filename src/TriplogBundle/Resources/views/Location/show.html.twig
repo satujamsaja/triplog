@@ -17,7 +17,7 @@
             <div class="jumbotron jumbotron-map">
                 <div class="jumbotron-photo"><div id="map"></div></div>
                 <div class="jumbotron-contents">
-                    <h1>{{ location.tripLocName }}</h1>
+                    <h1>{{ location.tripLocName }} by  <a href="{{ path('user_profile', { "id" : location.trip.user.id }) }}">{{ location.trip.user.firstName }} {{ location.trip.user.lastName }}</a></h1>
                     <p>{{ location.tripLocDesc }}</p>
                     <i class="fa fa-tag fa-2" aria-hidden="true"></i> <a href="{{ path('trip_category_show', {"id" : location.tripCategory.id }) }}">{{ location.tripCategory.tripCatName }}</a>
                 </div>
