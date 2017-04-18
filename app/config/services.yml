@@ -21,3 +21,7 @@ services:
         tags:
             - { name: doctrine.event_subscriber }
 
+    trip.file_uploader:
+        class: TriplogBundle\Service\FileUploader
+        arguments: ['%image_directory%']
+
