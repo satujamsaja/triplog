@@ -32,7 +32,7 @@ var LocationList = React.createClass({
     render: function() {
         var locationNodes = this.props.locations.map(function(location) {
             return (
-                <LocationLocBox tripCategory={location.tripCategory} tripLocDesc={location.tripLocDesc} tripLocName={location.tripLocName} tripLocImg={location.tripLocImg} tripLatLon={location.tripLatLon} date={location.createdAt} key={location.id} pos={location.posTimeline}  link={location.link} linkCat={location.linkCat} linkTrip={location.linkTrip} userName={location.userName} userLink={location.userLink} profilePic={location.profilePic}></LocationLocBox>
+                <LocationLocBox tripCategory={location.tripCategory} tripLocDesc={location.tripLocDesc} tripLocName={location.tripLocName} tripLocImg={location.tripLocImg} tripLatLon={location.tripLatLon} date={location.createdAt} key={location.id} pos={location.posTimeline}  link={location.link} linkCat={location.linkCat} linkTrip={location.linkTrip} userName={location.userName} linkUser={location.linkUser} profilePic={location.profilePic}></LocationLocBox>
             );
         });
 
@@ -58,7 +58,7 @@ var LocationLocBox = React.createClass({
                         <img className="events-object img-rounded" width="50" src={this.props.profilePic} />
                     </div>
                     <div className="events-body">
-                        <h4 className="events-heading">{this.props.tripLocName} by <a href={this.props.userLink}>{this.props.userName}</a></h4>
+                        <h4 className="events-heading">{this.props.tripLocName} by <a href={this.props.linkUser}>{this.props.userName}</a></h4>
                         <p>{this.props.tripLocDesc}</p>
                         <i className="fa fa-tag fa-2" aria-hidden="true"></i> <a href={this.props.linkCat}>{this.props.tripCategory}</a>
                         <p>

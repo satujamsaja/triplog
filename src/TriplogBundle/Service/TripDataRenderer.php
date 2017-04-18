@@ -32,7 +32,7 @@ class TripDataRenderer
                 'id' => $trip->getId(),
                 'uid' => $trip->getUser()->getId(),
                 'userName' => $trip->getUser()->getFirstName() . ' ' . $trip->getUser()->getLastName(),
-                'profilePic' => $trip->getUser()->getProfilePicture(),
+                'profilePic' => '/uploads/images/' . $trip->getUser()->getProfilePicture(),
                 'tripName' => $trip->getTripName(),
                 'tripDesc' => $trip->getTripDesc(),
                 'createdAt' => $trip->getCreatedAt()->format("F d Y, H:ma"),
@@ -40,7 +40,7 @@ class TripDataRenderer
                 'link' => $this->router->generate('trip_show', [
                     'id' => $trip->getId(),
                 ]),
-                'userLink' => $this->router->generate('user_profile', [
+                'linkUser' => $this->router->generate('user_profile', [
                     'id' => $trip->getUser()->getId()
                 ])
             ];
@@ -75,7 +75,7 @@ class TripDataRenderer
                     'id' => $tripLoc->getId(),
                     'uid' => $tripLoc->getTrip()->getUser()->getId(),
                     'userName' => $tripLoc->getTrip()->getUser()->getFirstName() . ' ' . $tripLoc->getTrip()->getUser()->getLastName(),
-                    'profilePic' => $tripLoc->getTrip()->getUser()->getProfilePicture(),
+                    'profilePic' => '/uploads/images/' . $tripLoc->getTrip()->getUser()->getProfilePicture(),
                     'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLoc->getTripLocName(),
                     'tripLocDesc' => $tripLoc->getTripLocDesc(),
@@ -92,7 +92,7 @@ class TripDataRenderer
                     'linkTrip' => $this->router->generate('trip_show', [
                         'id' => $tripLoc->getTrip()->getId(),
                     ]),
-                    'userLink' => $this->router->generate('user_profile', [
+                    'linkUser' => $this->router->generate('user_profile', [
                         'id' => $tripLoc->getTrip()->getUser()->getId()
                     ])
                 ];
@@ -127,7 +127,7 @@ class TripDataRenderer
                     'id' => $tripLoc->getId(),
                     'uid' => $tripLoc->getTrip()->getUser()->getId(),
                     'userName' => $tripLoc->getTrip()->getUser()->getFirstName() . ' ' . $tripLoc->getTrip()->getUser()->getLastName(),
-                    'profilePic' => $tripLoc->getTrip()->getUser()->getProfilePicture(),
+                    'profilePic' => '/uploads/images/' . $tripLoc->getTrip()->getUser()->getProfilePicture(),
                     'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLoc->getTripLocName(),
                     'tripLocDesc' => $tripLoc->getTripLocDesc(),
@@ -143,7 +143,7 @@ class TripDataRenderer
                     'linkTrip' => $this->router->generate('trip_show', [
                         'id' => $tripLoc->getTrip()->getId(),
                     ]),
-                    'userLink' => $this->router->generate('user_profile', [
+                    'linkUser' => $this->router->generate('user_profile', [
                         'id' => $tripLoc->getTrip()->getUser()->getId()
                     ])
                 ];
@@ -176,7 +176,7 @@ class TripDataRenderer
                     'id' => $tripLocation->getId(),
                     'uid' => $tripLocation->getTrip()->getUser()->getId(),
                     'userName' => $tripLocation->getTrip()->getUser()->getFirstName() . ' ' . $tripLocation->getTrip()->getUser()->getLastName(),
-                    'profilePic' => $tripLocation->getTrip()->getUser()->getProfilePicture(),
+                    'profilePic' => '/uploads/images/' . $tripLocation->getTrip()->getUser()->getProfilePicture(),
                     'tripCategory' => $tripLocation->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLocation->getTripLocName(),
                     'tripLocDesc' => $tripLocation->getTripLocDesc(),
@@ -193,7 +193,7 @@ class TripDataRenderer
                     'linkTrip' => $this->router->generate('trip_show', [
                         'id' => $tripLocation->getTrip()->getId(),
                     ]),
-                    'userLink' => $this->router->generate('user_profile', [
+                    'linkUser' => $this->router->generate('user_profile', [
                         'id' => $tripLocation->getTrip()->getUser()->getId()
                     ])
                 ];
@@ -249,7 +249,7 @@ class TripDataRenderer
                     'id' => $tripLoc->getId(),
                     'uid' => $tripLoc->getTrip()->getUser()->getId(),
                     'userName' => $tripLoc->getTrip()->getUser()->getFirstName() . ' ' . $tripLoc->getTrip()->getUser()->getLastName(),
-                    'profilePic' => $tripLoc->getTrip()->getUser()->getProfilePicture(),
+                    'profilePic' => '/uploads/images/' . $tripLoc->getTrip()->getUser()->getProfilePicture(),
                     'tripCategory' => $tripLoc->getTripCategory()->getTripCatName(),
                     'tripLocName' => $tripLoc->getTripLocName(),
                     'tripLocDesc' => $tripLoc->getTripLocDesc(),
@@ -266,7 +266,7 @@ class TripDataRenderer
                     'linkTrip' => $this->router->generate('trip_show', [
                         'id' => $tripLoc->getTrip()->getId(),
                     ]),
-                    'userLink' => $this->router->generate('user_profile', [
+                    'linkUser' => $this->router->generate('user_profile', [
                         'id' => $tripLoc->getTrip()->getUser()->getId()
                     ])
                 ];

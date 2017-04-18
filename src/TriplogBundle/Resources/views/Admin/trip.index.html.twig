@@ -38,7 +38,7 @@
             {% for trip in trips %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td><img width="50" height="50" src="{{ trip.user.profilePicture }}"></td>
+                <td><img width="50" height="50" src="{{ asset('uploads/images/') }}{{ trip.user.profilePicture }}"></td>
                 <td>{{ trip.user.firstName }} {{ trip.user.lastName }}</td>
                 <td>{{ trip.tripName }}</td>
                 <td>{{ trip.tripDesc | slice(0,20)}}...</td>

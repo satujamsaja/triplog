@@ -247,7 +247,7 @@ class User implements UserInterface
      */
     public function getProfilePicture()
     {
-        return $this->profilePicture;
+        return (!empty($this->profilePicture)) ? $this->profilePicture : 'placeholder.jpg';
     }
 
     /**
