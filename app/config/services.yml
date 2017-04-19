@@ -25,3 +25,9 @@ services:
         class: TriplogBundle\Service\FileUploader
         arguments: ['%image_directory%']
 
+    trip.doctrine.file_upload_listener:
+        class: TriplogBundle\Doctrine\FileUploadListener
+        arguments: ['@trip.file_uploader']
+        tags:
+            - { name: doctrine.event_listener, event : 'prePersist' }
+            - { name: doctrine.event_listener, event : 'preUpdate' }

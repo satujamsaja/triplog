@@ -4,6 +4,7 @@
 namespace TriplogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="TriplogBundle\Repository\TripImageRepository")
@@ -26,8 +27,9 @@ class TripImage
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\File(maxSize="5M", maxSizeMessage="Please upload file below 5MB", mimeTypes={"image/jpg", "image/png"}, mimeTypesMessage="Please upload jpg or png image")
      */
-    private $tripImgUrl;
+    private $tripImage;
 
     /**
      * @ORM\Column(type="datetime")
@@ -63,22 +65,22 @@ class TripImage
         $this->tripLocation = $tripLocation;
     }
 
-
     /**
      * @return mixed
      */
-    public function getTripImgUrl()
+    public function getTripImage()
     {
-        return $this->tripImgUrl;
+        return $this->tripImage;
     }
 
     /**
-     * @param mixed $tripImgUrl
+     * @param mixed $tripImage
      */
-    public function setTripImgUrl($tripImgUrl)
+    public function setTripImage($tripImage)
     {
-        $this->tripImgUrl = $tripImgUrl;
+        $this->tripImage = $tripImage;
     }
+
 
     /**
      * @return mixed

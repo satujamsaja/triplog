@@ -27,6 +27,12 @@ class TripCategory
     private $tripCatName;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\File(maxSize="5M", maxSizeMessage="Please upload file below 5MB", mimeTypes={"image/jpg", "image/png"}, mimeTypesMessage="Please upload jpg or png image")
+     */
+    private $tripCatImage;
+
+    /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
      */
@@ -96,4 +102,21 @@ class TripCategory
     {
         return $this->getTripCatName();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTripCatImage()
+    {
+        return $this->tripCatImage;
+    }
+
+    /**
+     * @param mixed $tripCatImage
+     */
+    public function setTripCatImage($tripCatImage)
+    {
+        $this->tripCatImage = $tripCatImage;
+    }
+
 }

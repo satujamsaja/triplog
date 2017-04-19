@@ -37,7 +37,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\File(mimeTypes={"image/jpg", "image/png"})
+     * @Assert\File(maxSize="5M", maxSizeMessage="Please upload file below 5MB", mimeTypes={"image/jpg", "image/png"}, mimeTypesMessage="Please upload jpg or png image")
      */
     private $profilePicture;
 

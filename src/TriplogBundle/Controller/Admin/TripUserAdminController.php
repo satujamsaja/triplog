@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
+use TriplogBundle\Entity\User;
 
 
 /**
@@ -39,12 +41,6 @@ class TripUserAdminController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            $file = $user->getProfilePicture();
-
-            if ($file) {
-                $fileName = $this->get('trip.file_uploader')->upload($file);
-                $user->setProfilePicture($fileName);
-            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -57,6 +53,36 @@ class TripUserAdminController extends Controller
         }
 
         return $this->render('TriplogBundle:Admin/User:new.html.twig', [
+            'userForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/user/edit/{id}", name="admin_trip_user_edit")
+     */
+    public function editAction(Request $request, User $user)
+    {
+        $file = new File($this->getParameter('image_directory') . '/' . $user->getProfilePicture());
+
+        $user->setProfilePicture($file);
+
+        $form = $this->createForm('TriplogBundle\Form\UserFormType', $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('Success', 'User updated');
+
+            return $this->redirectToRoute('admin_trip_user_list');
+
+        }
+
+        return $this->render('TriplogBundle:Admin/User:edit.html.twig', [
             'userForm' => $form->createView()
         ]);
     }

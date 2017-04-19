@@ -9,6 +9,7 @@ TripLogBundle\Entity\Trip:
 TripLogBundle\Entity\TripCategory:
     trip.category_{1..10}:
         tripCatName: '<word()>'
+        tripCatImage: 'placeholder.jpg'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
 TripLogBundle\Entity\TripLocation:
@@ -24,7 +25,7 @@ TripLogBundle\Entity\TripLocation:
 TripLogBundle\Entity\TripImage:
     trip.image_{1...200}:
         tripLocation: '@trip.location_*'
-        tripImgUrl: '<imageUrl(540,405,"city")>'
+        tripImage: 'placeholder.jpg'
         createdAt: '<dateTimeBetween("-200 days", "now")>'
 
 TripLogBundle\Entity\User:

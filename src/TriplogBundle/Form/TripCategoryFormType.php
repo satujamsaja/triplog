@@ -4,6 +4,7 @@ namespace TriplogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,13 +14,14 @@ class TripCategoryFormType extends AbstractType
     {
         $builder
             ->add('tripCatName')
+            ->add('tripCatImage')
             ->add('createdAt', DateTimeType::class,[
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'js-datetimepicker',
                 ],
                 'html5' => false,
-                'format' => 'MM/dd/y h:m a'
+                'format' => 'MM/dd/y h:m a',
             ]);
     }
 
