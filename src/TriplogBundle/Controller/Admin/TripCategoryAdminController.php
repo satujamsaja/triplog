@@ -40,6 +40,10 @@ class TripCategoryAdminController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
 
+            $file = $category->getTripCatImage();
+            $fileName = $this->get('trip.file_uploader')->upload($file);
+            $category->setTripCatImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
