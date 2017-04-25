@@ -108,7 +108,7 @@ class TripCategory
      */
     public function getTripCatImage()
     {
-        return (!empty($this->tripCatImage)) ? $this->tripCatImage : 'placeholder.jpg';
+        return $this->tripCatImage;
     }
 
     /**

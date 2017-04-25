@@ -35,7 +35,8 @@
             {% for category in categories %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td><img width="50" height="50" src="{{ asset('uploads/images/') }}{{  category.tripCatImage }}"></td>
+                <td>{% if category.tripCatImage %}<img width="50" height="50" src="{{ asset('uploads/images/') }}{{  category.tripCatImage }}">{% endif %}
+                </td>
                 <td>{{ category.tripCatname }}</td>
                 <td>{{ category.createdAt | date("Y-m-d H:i:s") }}</td>
                 <td>

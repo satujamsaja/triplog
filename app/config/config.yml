@@ -9,6 +9,9 @@ imports:
 parameters:
     locale: en
     image_directory: '%kernel.root_dir%/../web/uploads/images'
+    roles:
+        ROLE_ADMIN: ROLE_ADMIN
+        ROLE_USER: ROLE_USER
 
 framework:
     #esi: ~

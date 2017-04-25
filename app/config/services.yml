@@ -25,3 +25,9 @@ services:
         class: TriplogBundle\Service\FileUploader
         arguments: ['%image_directory%']
 
+    trip.form.type.role:
+        class: TriplogBundle\Form\Type\RoleType
+        arguments:
+            - '%roles%'
+        tags:
+            - { name: form.type }

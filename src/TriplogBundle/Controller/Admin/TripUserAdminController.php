@@ -42,9 +42,10 @@ class TripUserAdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
-            $file = $user->getProfilePicture();
-            $fileName = $this->get('trip.file_uploader')->upload($file);
-            $user->setProfilePicture($fileName);
+            if ($file = $user->getProfilePicture()) {
+                $fileName = $this->get('trip.file_uploader')->upload($file);
+                $user->setProfilePicture($fileName);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -66,15 +67,16 @@ class TripUserAdminController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $file = new File($this->getParameter('image_directory') . '/' . $user->getProfilePicture());
-
-        $user->setProfilePicture($file);
-
         $form = $this->createForm('TriplogBundle\Form\UserFormType', $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+
+            if ($file = $user->getProfilePicture()) {
+                $fileName = $this->get('trip.file_uploader')->upload($file);
+                $user->setProfilePicture($fileName);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

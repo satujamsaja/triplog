@@ -37,7 +37,7 @@
             {% for user in users %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td><img width="50" height="50" src="{{ asset('uploads/images/') }}{{ user.profilePicture }}"></td>
+                    <td>{% if user.profilePicture %}<img width="50" height="50" src="{{ asset('uploads/images/') }}{{ user.profilePicture }}">{% endif %}</td>
                     <td>{{ user.firstName }} {{ user.lastName }}</td>
                     <td>{{ user.email | slice(0,20)}}...</td>
                     <td>{{ user.gender }}</td>

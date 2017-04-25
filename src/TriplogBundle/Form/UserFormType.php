@@ -5,10 +5,12 @@ namespace TriplogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use TriplogBundle\Form\Type\RoleType;
 
 
 class UserFormType extends AbstractType
@@ -17,7 +19,9 @@ class UserFormType extends AbstractType
     {
         $builder->add('firstName')
             ->add('lastName')
-            ->add('profilePicture')
+            ->add('profilePicture', FileType::class,[
+                'data_class' => null
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'male' => 'Male',
@@ -29,11 +33,8 @@ class UserFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'ROLE_USER' => 'User',
-                    'ROLE_ADMIN' => 'Admin',
-                ],
+            ->add('roles', RoleType::class, [
+                'data_class' => null,
                 'placeholder' => 'Select role'
             ])
             ->add('createdAt', DateTimeType::class,[

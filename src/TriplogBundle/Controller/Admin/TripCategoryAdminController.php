@@ -40,9 +40,10 @@ class TripCategoryAdminController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
 
-            $file = $category->getTripCatImage();
-            $fileName = $this->get('trip.file_uploader')->upload($file);
-            $category->setTripCatImage($fileName);
+            if ($file = $category->getTripCatImage()) {
+                $fileName = $this->get('trip.file_uploader')->upload($file);
+                $category->setTripCatImage($fileName);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
@@ -68,6 +69,11 @@ class TripCategoryAdminController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
+
+            if ($file = $category->getTripCatImage()) {
+                $fileName = $this->get('trip.file_uploader')->upload($file);
+                $category->setTripCatImage($fileName);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);

@@ -14,7 +14,9 @@ class TripCategoryFormType extends AbstractType
     {
         $builder
             ->add('tripCatName')
-            ->add('tripCatImage')
+            ->add('tripCatImage', FileType::class,[
+                'data_class' => null
+            ])
             ->add('createdAt', DateTimeType::class,[
                 'widget' => 'single_text',
                 'attr' => [
