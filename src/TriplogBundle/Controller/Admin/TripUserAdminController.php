@@ -51,7 +51,7 @@ class TripUserAdminController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('Success', 'User created');
+            $this->addFlash('success', 'User created');
 
             return $this->redirectToRoute('admin_trip_user_list');
 
@@ -82,7 +82,7 @@ class TripUserAdminController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('Success', 'User updated');
+            $this->addFlash('success', 'User updated');
 
             return $this->redirectToRoute('admin_trip_user_list');
 
